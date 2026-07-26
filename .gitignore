@@ -1,26 +1,23 @@
 cat > .gitignore << 'EOF'
-# Environment
-.env
-.venv/
-__pycache__/
-*.pyc
-*.pyo
+# Ignore all dotfiles/dotfolders by default
+.*
+
+# Explicit exceptions — these MUST stay tracked
+!.gitignore
+!.env.example
 
 # Data (all generated artifacts, reconstructed by pipeline.sh)
 data/
 
-# IDE / editor
-.vscode/
-.idea/
-.kilo/
-*.DS_Store
-Icon?
-
 # Office lock files
 ~$*
 
-# Testing
-.pytest_cache/
-.coverage
-htmlcov/
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
 EOF
+
+~$presentation_puls_events_EN (2).pptx
+~$presentation_puls_events_EN.pptx
+~$presentation_puls_events_FR.pptx
