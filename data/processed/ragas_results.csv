@@ -1,0 +1,278 @@
+user_input,retrieved_contexts,response,reference,faithfulness,answer_relevancy,context_precision,context_recall
+Qu'est-ce que le concert Onestage à Paris ?,"['Événement : Concert, Onestage\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 27 mars, 16h00', 'Événement : Concert de l\'ensemble orchestral Vivharmonie\nDescription : Un concert exceptionnel de l\'orchestre philharmonique ""Vivharmonie""\nLieu : Église Sainte-Odile, Paris\nDate : Dimanche 12 avril, 15h30', 'Événement : samedi 04 octobre 2025 de 20h30 à 22h30: concert Ondes Plurielles\nDescription : samedi 04 octobre 2025 de 20h30 à 22h30: concert Ondes Plurielles\nLieu : Église Saint-Marcel, Paris\nDate : Samedi 4 octobre 2025, 20h30', ""Événement : Concert L'Orchestre de la Bastille\nDescription : Direction Émilie Postel-Vinay\nLieu : Eglise Saint Leu Saint Gilles, Paris\nDate : Samedi 5 avril 2025, 20h30"", 'Événement : Mardi 01 avril 2025 de 20h à 22h: concert Chœur Sans Frontières\nDescription : Mardi 01 avril 2025 de 20h à 22h: concert Chœur Sans Frontières\nLieu : Église Saint-Marcel, Paris\nDate : Mardi 1 avril 2025, 20h00']","Le concert **Onestage** est un concert qui aura lieu à l'**Église de La Madeleine, Paris**, le **vendredi 27 mars à 16h00**.",Le concert Onestage est un concert prévu le vendredi 27 mars à 16h00 à l'Église de La Madeleine à Paris.,1.0,,,1.0
+Parlez-moi du concert des 4 Saisons de Vivaldi à Paris.,"['Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 3 janvier, 20h00', 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 7 mars, 20h00', 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Mardi 6 janvier, 19h30', 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 18 avril, 20h00', 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 21 mars, 20h00']","Voici les informations disponibles sur les concerts des *Quatre Saisons* de Vivaldi à Paris :
+
+1. **Les quatre saisons de Vivaldi**
+   - **Date** : Samedi 3 janvier, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+2. **Les quatre saisons de Vivaldi**
+   - **Date** : Mardi 6 janvier, 19h30
+   - **Lieu** : Église de La Madeleine, Paris
+
+3. **Les quatre saisons de Vivaldi**
+   - **Date** : Samedi 7 mars, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+4. **Les quatre saisons de Vivaldi**
+   - **Date** : Samedi 21 mars, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+5. **Les quatre saisons de Vivaldi**
+   - **Date** : Samedi 18 avril, 20h00
+   - **Lieu** : Église de La Madeleine, Paris",Les 4 Saisons de Vivaldi et la Petite Musique de Nuit de Mozart sont interprétées à l'Église de La Madeleine à Paris. Plusieurs dates sont disponibles dont le mercredi 11 mars et le mardi 7 avril à 20h00.,1.0,,0.0,0.0
+Qu'est-ce que le Concert Aria Baroque ?,"['Événement : Concert Aria Baroque\nDescription : Vivaldi, Haendel et Bach\nLieu : Eglise Sainte-Elisabeth de Hongrie, Paris\nDate : Samedi 14 mars, 16h00', 'Événement : Musique baroque\nDescription : par les Jeunes Ambassadeurs de Cracovie\nLieu : Église Sainte-Marie des Batignolles, Paris\nDate : Samedi 5 avril 2025, 15h30', 'Événement : Concert de Noël : la musique baroque italienne\nDescription : Le Collège des Bernardins est heureux de vous convier à son grand concert de Noël sous les arches de la nef, autour de la musique baroque italienne. Pour la première fois en France, découvrez la Mi...\nLieu : Collège des Bernardins, Paris\nDate : Mercredi 17 décembre 2025, 20h00', 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Lundi 6 avril, 20h00', 'Événement : Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Mardi 7 avril, 20h00']","Le **Concert Aria Baroque** est un concert de musique baroque présentant des œuvres de **Vivaldi, Haendel et Bach**.
+Il aura lieu le **samedi 14 mars à 16h00** à l'**Église Sainte-Elisabeth de Hongrie, Paris**.","Le Concert Aria Baroque propose des œuvres de Vivaldi, Haendel et Bach. Il a lieu le samedi 14 mars à 16h00 à l'Église Sainte-Elisabeth de Hongrie à Paris.",1.0,,0.9999999999,1.0
+Quand a lieu le Requiem de Mozart et Boléro de Ravel ?,"['Événement : Requiem de Mozart et Boléro de Ravel\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 11 avril, 20h45', 'Événement : Requiem de Mozart et Boléro de Ravel\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 6 mars, 20h45', 'Événement : Requiem de Mozart et Boléro de Ravel\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 24 avril, 20h45', 'Événement : Requiem de Mozart et Boléro de Ravel\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 20 février, 20h45', 'Événement : Requiem de Mozart et Boléro de Ravel\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 29 novembre 2025, 08h00']","Voici les dates et lieux du **Requiem de Mozart et Boléro de Ravel** selon les événements disponibles :
+
+- **Vendredi 6 mars 2025** à 20h45 – Église de La Madeleine, Paris
+- **Vendredi 20 février 2025** à 20h45 – Église de La Madeleine, Paris
+- **Samedi 11 avril 2025** à 20h45 – Église de La Madeleine, Paris
+- **Vendredi 24 avril 2025** à 20h45 – Église de La Madeleine, Paris
+- **Samedi 29 novembre 2025** à 08h00 – Église de La Madeleine, Paris",Le Requiem de Mozart et Boléro de Ravel a lieu le samedi 11 avril 2025 à 20h45 à l'Église de La Madeleine à Paris.,0.16666666666666666,,0.9999999999,1.0
+Qu'est-ce que le concert spirituel à Paris ?,"['Événement : Concert spirituel\nDescription : Tous les dimanches, après la messe de 11h.\nLieu : Basilique Sainte-Clotilde, Paris\nDate : 30 novembre - 21 décembre 2025, les dimanches', 'Événement : Concert Spirituel\nDescription : De la Passion à la Résurrection\nLieu : paroisse Saint-Jean-Baptiste-de-la-Salle, Paris\nDate : Dimanche 29 mars, 16h00', 'Événement : Concert Spirituel Choeur du Haut-Pas sous la direction de Patrice Holiner\nDescription : Haendel, Mozart, Schubert\nLieu : Église Saint-Jacques du Haut-Pas, Paris\nDate : Dimanche 1 février, 15h30', 'Événement : CONCERT SPIRITUEL MEDITATION DE CAREME\nDescription : La Passion selon saint Jean, J.S Bach\nLieu : Église Saint-Augustin, Paris\nDate : Dimanche 6 avril 2025, 15h30', 'Événement : Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart\u200b\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Mercredi 11 mars, 20h00']","Voici les concerts spirituels disponibles à Paris selon le contexte :
+
+1. **Concert spirituel** – Tous les dimanches après la messe de 11h
+   **Lieu** : Basilique Sainte-Clotilde
+   **Dates** : 30 novembre – 21 décembre 2025 (les dimanches)
+
+2. **Concert Spirituel : De la Passion à la Résurrection**
+   **Lieu** : Paroisse Saint-Jean-Baptiste-de-la-Salle
+   **Date** : Dimanche 29 mars 2025, 16h00
+
+3. **Concert Spirituel – Chœur du Haut-Pas (Patrice Holiner)**
+   **Programme** : Haendel, Mozart, Schubert
+   **Lieu** : Église Saint-Jacques du Haut-Pas
+   **Date** : Dimanche 1 février 2025, 15h30
+
+4. **Concert Spirituel Méditation de Carême : La Passion selon saint Jean (Bach)**
+   **Lieu** : Église Saint-Augustin
+   **Date** : Dimanche 6 avril 2025, 15h30
+
+5. **Les 4 Saisons de Vivaldi & Petite Musique de Nuit de Mozart**
+   **Lieu** : Église de La Madeleine
+   **Date** : Mercredi 11 mars 2025, 20h00","Le Concert spirituel se tient les dimanches après la messe de 11h à la Basilique Sainte-Clotilde à Paris, du 30 novembre au 21 décembre 2025.",1.0,,,1.0
+Qu'est-ce que le concert de l'Orchestre de la Bastille ?,"[""Événement : Concert L'Orchestre de la Bastille\nDescription : Direction Émilie Postel-Vinay\nLieu : Eglise Saint Leu Saint Gilles, Paris\nDate : Samedi 5 avril 2025, 20h30"", 'Événement : Grand concert symphonique\nDescription : Orchestre de chambre du Karlsruhe Institute of Technology\nLieu : Église Sainte-Marie des Batignolles, Paris\nDate : Samedi 7 mars, 15h30', 'Événement : Requiem de Mozart et Boléro de Ravel\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 12 juillet 2025, 20h45', 'Événement : Les Quatre Saisons de Vivaldi (intégrale)\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 4 juillet 2025, 20h00', 'Événement : Les Quatre Saisons de Vivaldi (intégrale)\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 19 juillet 2025, 20h00']","**Concert L'Orchestre de la Bastille**
+- **Date** : Samedi 5 avril 2025, 20h30
+- **Lieu** : Église Saint Leu Saint Gilles, Paris
+- **Description** : Direction Émilie Postel-Vinay",Le Concert de l'Orchestre de la Bastille dirigé par Émilie Postel-Vinay a lieu le samedi 5 avril 2025 à 20h30 à l'Église Saint Leu Saint Gilles à Paris.,1.0,,0.9999999999,1.0
+Quels concerts ont lieu en avril à Paris ?,"['Événement : Mardi 01 avril 2025 de 20h à 22h: concert Chœur Sans Frontières\nDescription : Mardi 01 avril 2025 de 20h à 22h: concert Chœur Sans Frontières\nLieu : Église Saint-Marcel, Paris\nDate : Mardi 1 avril 2025, 20h00', 'Événement : Concert La Passion de Jésus-Christ - Dimanche 13 avril à 16h00\nDescription : Concert spirituel\nLieu : Eglise Saint Gervais, Paris\nDate : Dimanche 13 avril 2025, 16h00', ""Événement : Concert de Printemps France Asie\nDescription : Ce programme de musique sacrée et classique réunira voix et instruments autour d'oeuvres de Bach, Mozart, Brahms et autres compositeurs. Venez partager un moment musical, lumineux et spirituel.\nLieu : Église Saint-Jacques du Haut-Pas, Paris\nDate : Dimanche 8 mars, 15h30"", 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Lundi 6 avril, 20h00', 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 25 avril, 20h00']","Voici les concerts ayant lieu en avril à Paris selon les événements fournis :
+
+1. **Chœur Sans Frontières**
+   - **Date** : Mardi 1 avril 2025, 20h00
+   - **Lieu** : Église Saint-Marcel, Paris
+
+2. **La Passion de Jésus-Christ**
+   - **Date** : Dimanche 13 avril 2025, 16h00
+   - **Lieu** : Église Saint Gervais, Paris
+
+3. **Les quatre saisons de Vivaldi**
+   - **Date** : Lundi 6 avril 2025, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+4. **Les quatre saisons de Vivaldi**
+   - **Date** : Samedi 25 avril 2025, 20h00
+   - **Lieu** : Église de La Madeleine, Paris","En avril à Paris, on peut assister notamment aux 4 Saisons de Vivaldi à l'Église de La Madeleine le 7 avril, et au Requiem de Mozart et Boléro de Ravel le 11 avril.",1.0,,0.0,0.0
+Quels événements se déroulent en mars à Paris ?,"['Événement : Rencontres\nDescription : Carême\nLieu : Salle Robert Mortier, paroisse Saint-Antoine de Padoue, Paris\nDate : 6 - 27 mars, les vendredis', ""Événement : L'important, c'est le rose !\nDescription : Le dimanche 15 Mars : 4ème dimanche de Carême, dimanche de Laetare. Journée festive pour petits et grands à Saint-Jean-Baptiste-De-La-Salle.\nLieu : paroisse Saint-Jean-Baptiste-de-la-Salle, Paris\nDate : Dimanche 15 mars, 10h30"", ""Événement : Concert de Printemps France Asie\nDescription : Ce programme de musique sacrée et classique réunira voix et instruments autour d'oeuvres de Bach, Mozart, Brahms et autres compositeurs. Venez partager un moment musical, lumineux et spirituel.\nLieu : Église Saint-Jacques du Haut-Pas, Paris\nDate : Dimanche 8 mars, 15h30"", 'Événement : Parcours de carême\nDescription : Théotime\nLieu : Église Saint-François de Sales (ancienne église), Paris\nDate : 11 - 25 mars, les mercredis', 'Événement : Marche de Saint Joseph\nDescription : Marche de Saint Joseph - pour les hommes\nLieu : paroisse Saint-Jean-Baptiste-de-la-Salle, Paris\nDate : Samedi 21 mars, 07h30']","Voici les événements se déroulant en mars à Paris, selon le contexte fourni :
+
+1. **Rencontres** – Du 6 au 27 mars (les vendredis)
+   *Lieu* : Salle Robert Mortier, paroisse Saint-Antoine de Padoue
+
+2. **L'important, c'est le rose !** – Dimanche 15 mars à 10h30
+   *Lieu* : Paroisse Saint-Jean-Baptiste-de-la-Salle
+
+3. **Concert de Printemps France Asie** – Dimanche 8 mars à 15h30
+   *Lieu* : Église Saint-Jacques du Haut-Pas
+
+4. **Parcours de carême** – Du 11 au 25 mars (les mercredis)
+   *Lieu* : Église Saint-François de Sales (ancienne église)
+
+5. **Marche de Saint Joseph** – Samedi 21 mars à 07h30
+   *Lieu* : Paroisse Saint-Jean-Baptiste-de-la-Salle","En mars à Paris, plusieurs concerts sont prévus dont le Concert Aria Baroque le 14 mars, les 4 Saisons de Vivaldi le 11 mars, et le concert Onestage le 27 mars.",1.0,,0.0,0.0
+Que faire ce weekend à Paris ?,"['Événement : 18 - 30 ans Vivre autrement les 3 Jours Saints\nDescription : Toi qui a entre 18 et 30 ans, viens vivre à la paroisse un temps privilégié  pendant la semaine sainte.\nLieu : paroisse Saint-Jean-Baptiste-de-la-Salle, Paris\nDate : 1 - 4 avril', 'Événement : Spectacle “Rien à faire” solo pour un clown\nDescription : Par Fabrice Hadjadj, interprété par Philippe Rousseaux.\nLieu : Crypte de Saint-Pierre du Gros-Caillou, Paris\nDate : Vendredi 28 mars 2025, 20h30', ""Événement : Soirée de partage pour les jeunes pros et étudiants\nDescription : Temps de partage et d'échange autour de crêpes\nLieu : Salle de La Madeleine, Paris\nDate : Samedi 7 février, 19h00"", 'Événement : Ciné-Club\nDescription : Film : Invictus\nLieu : Salle de La Madeleine, Paris\nDate : Samedi 14 février, 19h00', 'Événement : Rencontres\nDescription : Carême\nLieu : Salle Robert Mortier, paroisse Saint-Antoine de Padoue, Paris\nDate : 6 - 27 mars, les vendredis']","Voici les événements disponibles ce weekend à Paris :
+
+- **Soirée de partage pour les jeunes pros et étudiants**
+  *Date* : Samedi 7 février, 19h00
+  *Lieu* : Salle de La Madeleine, Paris
+
+- **Ciné-Club**
+  *Date* : Samedi 14 février, 19h00
+  *Lieu* : Salle de La Madeleine, Paris","Ce weekend à Paris, vous pouvez assister à plusieurs événements culturels disponibles dans notre agenda.",0.8,,,0.0
+Y a-t-il des événements culturels en juillet 2025 à Paris ?,"[""Événement : Concerts de l'été\nDescription : À Sainte-Marie des Batignolles.\nLieu : Église Sainte-Marie des Batignolles, Paris\nDate : 19 juillet - 15 août 2025"", ""Événement : Déjeuner partagé\nDescription : Tous les dimanches de juillet et jusqu'au 24 août.\nLieu : Église Saint-Pierre du Gros Caillou, Paris\nDate : 6 juillet - 24 août 2025, les dimanches"", 'Événement : Fête de Sainte Marie-Madeleine\nDescription : Programme de la journée\nLieu : Église de La Madeleine, Paris\nDate : Mardi 22 juillet 2025, 12h30', ""Événement : Mardis d’été\nDescription : À l'attention des paroissiens, dans le jardin de la maison paroissiale.\nLieu : Maison paroissiale, Paris\nDate : 8 juillet - 26 août 2025, les mardis"", 'Événement : Déjeuners partagés\nDescription : Venir avec quelque chose à partager pour déjeuner ensemble\nLieu : Saint-Pierre du Gros-Caillou, Paris\nDate : 6 juillet - 31 août 2025, les dimanches']","Voici les événements culturels en juillet 2025 à Paris selon le contexte fourni :
+
+1. **Concerts de l'été**
+   - **Date** : 19 juillet - 15 août 2025
+   - **Lieu** : Église Sainte-Marie des Batignolles, Paris
+
+2. **Fête de Sainte Marie-Madeleine**
+   - **Date** : Mardi 22 juillet 2025, 12h30
+   - **Lieu** : Église de La Madeleine, Paris
+
+3. **Mardis d’été**
+   - **Date** : 8 juillet - 26 août 2025 (les mardis)
+   - **Lieu** : Maison paroissiale, Paris","En juillet 2025 à Paris, on peut assister aux 4 Saisons de Vivaldi et la Petite Musique de Nuit de Mozart le 5 juillet à 20h45.",1.0,,0.0,0.0
+Quels événements ont lieu en décembre 2025 à Paris ?,"['Événement : Messes de Noël\nDescription : Messe de Noël\nLieu : Église Saint-Jacques du Haut-Pas, Paris\nDate : 24 et 25 décembre 2025', 'Événement : Concert de Noël\nDescription : Concert de Noël\nLieu : Église Sainte-Jeanne de Chantal, Paris\nDate : Mercredi 17 décembre 2025, 20h15', 'Événement : Concert de Noël\nDescription : La musique de Noël, telle que les siècles jusqu’à nous l’ont conçue en faisant parler les anges, est le point de rencontre entre terre et ciel.\nLieu : Cathédrale Notre-Dame de Paris, Paris\nDate : Mardi 16 décembre 2025, 20h30', ""Événement : Confessions de Noël\nDescription : Confessions dans l'église\nLieu : Église Saint-Charles de Monceau, Paris\nDate : 13 et 14 décembre 2025"", 'Événement : Marché de Noël\nDescription : Le rendez-vous festif de l’Avent\nLieu : Salles paroissiales de Saint-Léon, Paris\nDate : 29 et 30 novembre 2025']","Voici les événements en décembre 2025 à Paris :
+
+1. **Messes de Noël**
+   - **Date** : 24 et 25 décembre 2025
+   - **Lieu** : Église Saint-Jacques du Haut-Pas
+
+2. **Concert de Noël**
+   - **Date** : Mercredi 17 décembre 2025, 20h15
+   - **Lieu** : Église Sainte-Jeanne de Chantal
+
+3. **Concert de Noël**
+   - **Date** : Mardi 16 décembre 2025, 20h30
+   - **Lieu** : Cathédrale Notre-Dame de Paris
+
+4. **Confessions de Noël**
+   - **Date** : 13 et 14 décembre 2025
+   - **Lieu** : Église Saint-Charles de Monceau","En décembre 2025 à Paris, le Concert spirituel se tient les dimanches à la Basilique Sainte-Clotilde jusqu'au 21 décembre.",1.0,,0.0,0.0
+Quels concerts de musique classique ont lieu à Paris ?,"['Événement : Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart\u200b\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Mercredi 11 mars, 20h00', 'Événement : Concert spirituel\nDescription : Tous les dimanches, après la messe de 11h.\nLieu : Basilique Sainte-Clotilde, Paris\nDate : 30 novembre - 21 décembre 2025, les dimanches', 'Événement : Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 28 mars, 20h00', 'Événement : Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Mardi 7 avril, 20h00', 'Événement : Concert Aria Baroque\nDescription : Vivaldi, Haendel et Bach\nLieu : Eglise Sainte-Elisabeth de Hongrie, Paris\nDate : Samedi 14 mars, 16h00']","Voici les concerts de musique classique à Paris disponibles dans le contexte :
+
+1. **Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart**
+   - **Date** : Mercredi 11 mars, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+2. **Concert spirituel**
+   - **Date** : 30 novembre - 21 décembre 2025, les dimanches après la messe de 11h
+   - **Lieu** : Basilique Sainte-Clotilde, Paris
+
+3. **Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart**
+   - **Date** : Samedi 28 mars, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+4. **Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart**
+   - **Date** : Mardi 7 avril, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+5. **Concert Aria Baroque** (Vivaldi, Haendel et Bach)
+   - **Date** : Samedi 14 mars, 16h00
+   - **Lieu** : Église Sainte-Elisabeth de Hongrie, Paris","Plusieurs concerts de musique classique sont disponibles à Paris dont les 4 Saisons de Vivaldi à l'Église de La Madeleine, le Concert Aria Baroque à l'Église Sainte-Elisabeth de Hongrie, et le Requiem de Mozart.",1.0,,0.4777777777618519,0.0
+Y a-t-il des événements religieux à Paris ?,"['Événement : Office de la Passion du Seigneur\nDescription : Vivre la Passion de notre Seigneur ...\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 3 avril, 19h00', 'Événement : Rencontres\nDescription : Carême\nLieu : Salle Robert Mortier, paroisse Saint-Antoine de Padoue, Paris\nDate : 6 - 27 mars, les vendredis', ""Événement : École d'oraison\nDescription : Six soirées pour apprendre à prier et vivre pleinement ces temps de silence offerts à Dieu.\nLieu : Église Saint-Michel, Paris\nDate : 12 mars - 16 avril"", ""Événement : S'adresse-t-on à une IA comme on s'adresse à Dieu ?\nDescription : Peut-on comparer l’IA générative au Verbe de Dieu ? Toujours disponible, qui répond à tout, insaisissable et mystérieux. Venez explorer cette question à travers un débat entre Christophe Tricot, co...\nLieu : Collège des Bernardins, Paris\nDate : Mardi 3 février, 19h30"", 'Événement : 18 - 30 ans Vivre autrement les 3 Jours Saints\nDescription : Toi qui a entre 18 et 30 ans, viens vivre à la paroisse un temps privilégié  pendant la semaine sainte.\nLieu : paroisse Saint-Jean-Baptiste-de-la-Salle, Paris\nDate : 1 - 4 avril']","Oui, voici les événements religieux disponibles à Paris selon le contexte fourni :
+
+1. **Office de la Passion du Seigneur**
+   - **Date** : Vendredi 3 avril, 19h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+2. **Rencontres (Carême)**
+   - **Date** : 6 - 27 mars, les vendredis
+   - **Lieu** : Salle Robert Mortier, paroisse Saint-Antoine de Padoue, Paris
+
+3. **École d'oraison**
+   - **Date** : 12 mars - 16 avril
+   - **Lieu** : Église Saint-Michel, Paris
+
+4. **18 - 30 ans : Vivre autrement les 3 Jours Saints**
+   - **Date** : 1 - 4 avril
+   - **Lieu** : Paroisse Saint-Jean-Baptiste-de-la-Salle, Paris","Oui, plusieurs événements religieux ont lieu à Paris notamment le Concert spirituel à la Basilique Sainte-Clotilde et des pèlerinages paroissiaux.",1.0,,0.8666666666377778,0.3333333333333333
+Y a-t-il des événements gratuits à Paris ?,"['Événement : Assemblée Générale de l’association « Toi mon frère »\nDescription : Entrée libre\nLieu : Église Notre-Dame du Bon Conseil, Paris\nDate : Samedi 14 mars, 17h00', 'Événement : Spectacle “Rien à faire” solo pour un clown\nDescription : Par Fabrice Hadjadj, interprété par Philippe Rousseaux.\nLieu : Crypte de Saint-Pierre du Gros-Caillou, Paris\nDate : Vendredi 28 mars 2025, 20h30', 'Événement : Déjeuners partagés\nDescription : Venir avec quelque chose à partager pour déjeuner ensemble\nLieu : Saint-Pierre du Gros-Caillou, Paris\nDate : 6 juillet - 31 août 2025, les dimanches', 'Événement : Mozart au paradis\nDescription : Sur un texte de Fabrice Hadjadj, plongez dans l’œuvre de Mozart avec Philippe Chevallier et découvrez tout ce que la musique peut changer en nous. Un spectacle musical et philosophique, drôle et pr...\nLieu : Collège des Bernardins, Paris\nDate : Jeudi 15 janvier, 20h00', ""Événement : Les Petits philosophes “Ça sert à quoi l'école ?”\nDescription : Dans le cadre cet atelier philo au Collège des Bernardins, les enfants sont invités à réfléchir ensemble sur le sens de l’école : pourquoi y va-t-on, que ferait-on sans elle, et bien d’autres quest...\nLieu : Collège des Bernardins, Paris\nDate : Samedi 24 janvier, 16h30""]","Oui, voici les événements gratuits parmi ceux proposés :
+
+- **Assemblée Générale de l’association « Toi mon frère »**
+  *Date :* Samedi 14 mars, 17h00
+  *Lieu :* Église Notre-Dame du Bon Conseil, Paris
+
+- **Déjeuners partagés**
+  *Dates :* 6 juillet - 31 août 2025, les dimanches
+  *Lieu :* Saint-Pierre du Gros-Caillou, Paris",Je ne dispose pas d'informations suffisantes dans le contexte pour confirmer quels événements sont gratuits.,1.0,,,0.0
+Quels événements musicaux sont disponibles à Paris ?,"['Événement : Fête de la musique\nDescription : De 16h à minuit, fête de la musique sur le parvis et dans Saint-Sulpice.\nLieu : Église Saint-Sulpice, Paris\nDate : Samedi 21 juin 2025, 16h00', ""Événement : Fête de la musique\nDescription : Sur le parvis de l'église, porte de Saint-Cloud.\nLieu : Église Sainte-Jeanne de Chantal, Paris\nDate : Samedi 21 juin 2025, 19h30"", 'Événement : Fête de la Musique avec le Chœur de l’Orchestre de Paris\nDescription : Au Collège des Bernardins, le Chœur de l’orchestre de Paris, sous la direction de Richard Wilberforce, vous propose de célébrer la fête de la musique grâce à un répertoire varié allant du 19e siècl...\nLieu : Collège des Bernardins, Paris\nDate : Samedi 21 juin 2025, 17h30', 'Événement : Concert ""Les Guetteurs""\nDescription : Centenaire église Saint Françoisd\'Assise\nLieu : ÉGLISE Saint François d\'Assise, Paris\nDate : Mercredi 4 juin 2025, 20h00', 'Événement : Concert ""Philippe Verdelot, l\'Européen""\nDescription : Musique de la renaissance, autour de Philippe Verdelot\nLieu : Eglise Sainte-Elisabeth de Hongrie, Paris\nDate : Lundi 29 septembre 2025, 20h00']","Voici les événements musicaux disponibles à Paris selon le contexte fourni :
+
+1. **Fête de la musique**
+   - **Date** : Samedi 21 juin 2025, 16h00
+   - **Lieu** : Église Saint-Sulpice, Paris
+
+2. **Fête de la musique**
+   - **Date** : Samedi 21 juin 2025, 19h30
+   - **Lieu** : Église Sainte-Jeanne de Chantal, Paris
+
+3. **Fête de la Musique avec le Chœur de l’Orchestre de Paris**
+   - **Date** : Samedi 21 juin 2025, 17h30
+   - **Lieu** : Collège des Bernardins, Paris
+
+4. **Concert ""Les Guetteurs""**
+   - **Date** : Mercredi 4 juin 2025, 20h00
+   - **Lieu** : Église Saint François d'Assise, Paris
+
+5. **Concert ""Philippe Verdelot, l'Européen""**
+   - **Date** : Lundi 29 septembre 2025, 20h00
+   - **Lieu** : Église Sainte-Elisabeth de Hongrie, Paris","De nombreux événements musicaux sont disponibles à Paris incluant des concerts de musique classique, de musique baroque et des récitals d'orgue.",1.0,,0.0,0.0
+Y a-t-il des récitals d'orgue à Paris ?,"[""Événement : Récital d'orgue : Thierry Escaich\nDescription : Thierry Escaich, musicien complet, mêle création, improvisation et interprétation au plus haut niveau, trois aspects indissociables de son art.\nLieu : Cathédrale Notre-Dame de Paris, Paris\nDate : Mardi 28 avril, 20h30"", ""Événement : Récital d'orgue : Olivier Latry\nDescription : Plus que pour tout autre instrument, l’orgue est affaire de transmission. Olivier Latry va, avec son talent, dessiner ces filiations aussi illustres que fascinantes.\nLieu : Cathédrale Notre-Dame de Paris, Paris\nDate : Mardi 4 août, 20h30"", ""Événement : Récital d'orgue\nDescription : Par Michèle Guyard.\nLieu : Église Saint-Jean-Bosco, Paris\nDate : Dimanche 25 janvier, 16h00"", ""Événement : Récital d'orgue : Thierry Escaich\nDescription : Thierry Escaich, musicien complet, mêle création, improvisation et interprétation au plus haut niveau, trois aspects indissociables de son art.\nLieu : Cathédrale Notre-Dame de Paris, Paris\nDate : Mardi 25 août, 20h30"", ""Événement : Récital d'orgue\nDescription : Récital d'orgue\nLieu : Église Saint-Jean-de-Montmartre, Paris\nDate : 20 et 21 septembre 2025""]","Oui, voici les récitals d'orgue à Paris mentionnés dans le contexte :
+
+1. **Récital d'orgue : Thierry Escaich**
+   - **Date** : Mardi 28 avril, 20h30
+   - **Lieu** : Cathédrale Notre-Dame de Paris
+
+2. **Récital d'orgue : Olivier Latry**
+   - **Date** : Mardi 4 août, 20h30
+   - **Lieu** : Cathédrale Notre-Dame de Paris
+
+3. **Récital d'orgue par Michèle Guyard**
+   - **Date** : Dimanche 25 janvier, 16h00
+   - **Lieu** : Église Saint-Jean-Bosco
+
+4. **Récital d'orgue : Thierry Escaich**
+   - **Date** : Mardi 25 août, 20h30
+   - **Lieu** : Cathédrale Notre-Dame de Paris
+
+5. **Récital d'orgue**
+   - **Date** : 20 et 21 septembre 2025
+   - **Lieu** : Église Saint-Jean-de-Montmartre","Oui, des récitals d'orgue sont organisés à Paris dans le cadre des Dimanches Musicaux.",0.8571428571428571,,0.36666666664833336,0.0
+Quels événements ont lieu à l'Église de La Madeleine ?,"['Événement : Fête de Sainte Marie-Madeleine\nDescription : Un événement à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Mardi 22 juillet 2025, 12h30', 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 13 février, 20h00', 'Événement : Vendredi Saint\nDescription : Horaires des célébrations\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 18 avril 2025, 12h30', 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Samedi 7 février, 20h00', 'Événement : Rencontre œcuméniques\nDescription : Un événement à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Mercredi 9 avril 2025, 20h00']","Voici les événements ayant lieu à l'Église de La Madeleine à Paris :
+
+1. **Fête de Sainte Marie-Madeleine**
+   - Date : Mardi 22 juillet 2025, 12h30
+
+2. **Les quatre saisons de Vivaldi**
+   - Dates : Vendredi 13 février 2020, 20h00 et Samedi 7 février 2020, 20h00
+
+3. **Vendredi Saint**
+   - Date : Vendredi 18 avril 2025, 12h30
+
+4. **Rencontre œcuméniques**
+   - Date : Mercredi 9 avril 2025, 20h00","L'Église de La Madeleine accueille plusieurs concerts dont les 4 Saisons de Vivaldi et la Petite Musique de Nuit de Mozart, ainsi que le Requiem de Mozart et Boléro de Ravel.",0.8,,,0.0
+Que se passe-t-il à la Basilique Sainte-Clotilde à Paris ?,"[""Événement : Journées du patrimoine de Sainte-Clotilde\nDescription : Visite thématique et audition d'orgue avec Art Culture et Foi\nLieu : Basilique Sainte-Clotilde, Paris\nDate : 20 et 21 septembre 2025"", 'Événement : Veillée pénitentielle\nDescription : Le 18 mars de 19h30 à 20h30 à la basilique.\nLieu : Basilique Sainte-Clotilde, Paris\nDate : Mercredi 18 mars, 19h30', 'Événement : Concert spirituel\nDescription : Tous les dimanches, après la messe de 11h.\nLieu : Basilique Sainte-Clotilde, Paris\nDate : 30 novembre - 21 décembre 2025, les dimanches', 'Événement : Chemin de croix de Sainte-Clotilde\nDescription : Départ à 12h de Sainte-Clotilde, arrivée à 13h à Sainte-Clotilde.\nLieu : Basilique Sainte-Clotilde, Paris\nDate : Vendredi 3 avril, 12h00', ""Événement : Concert d'orgue à Sainte-Clotilde\nDescription : Dans le cadre des Journées du Patrimoine.\nLieu : Basilique Sainte-Clotilde, Paris\nDate : Samedi 20 septembre 2025, 17h00""]","Voici les événements à la Basilique Sainte-Clotilde à Paris :
+
+- **Journées du patrimoine de Sainte-Clotilde** : 20 et 21 septembre 2025 (visite thématique et audition d'orgue).
+- **Concert d'orgue** : Samedi 20 septembre 2025 à 17h00 (dans le cadre des Journées du Patrimoine).
+- **Veillée pénitentielle** : Mercredi 18 mars 2025 à 19h30.
+- **Chemin de croix** : Vendredi 3 avril 2025 à 12h00.
+- **Concert spirituel** : Tous les dimanches du 30 novembre au 21 décembre 2025, après la messe de 11h.","La Basilique Sainte-Clotilde accueille le Concert spirituel les dimanches après la messe de 11h, du 30 novembre au 21 décembre 2025.",1.0,,0.3333333333,1.0
+Quels événements ont lieu à l'Église Sainte-Elisabeth de Hongrie ?,"['Événement : Concert\nDescription : Cantate BWV4 de J.S. Bach & Dixit Dominus de Händel\nLieu : Eglise Sainte-Elisabeth de Hongrie, Paris\nDate : Samedi 14 février, 16h00', 'Événement : Rentrée paroissiale\nDescription : Messe de rentrée Paroissiale et Accueil des nouveaux arrivants\nLieu : Eglise Sainte-Elisabeth de Hongrie, Paris\nDate : Dimanche 5 octobre 2025, 11h00', 'Événement : Concert Aria Baroque\nDescription : Vivaldi, Haendel et Bach\nLieu : Eglise Sainte-Elisabeth de Hongrie, Paris\nDate : Samedi 14 mars, 16h00', ""Événement : Concert au profit des personnes malades et handicapées pour leur pèlerinage à Lourdes avec l'Ordre de Malte\nDescription : Au programme : Mozart, Gounod, Puccini, Charpentier…\nLieu : Eglise Sainte-Elisabeth de Hongrie, Paris\nDate : Mardi 8 avril 2025, 20h00"", 'Événement : Concert ""Philippe Verdelot, l\'Européen""\nDescription : Musique de la renaissance, autour de Philippe Verdelot\nLieu : Eglise Sainte-Elisabeth de Hongrie, Paris\nDate : Lundi 29 septembre 2025, 20h00']","Voici les événements ayant lieu à l'Église Sainte-Elisabeth de Hongrie, Paris :
+
+1. **Concert** – Cantate BWV4 de J.S. Bach & Dixit Dominus de Händel
+   *Date : Samedi 14 février, 16h00*
+
+2. **Rentrée paroissiale** – Messe de rentrée paroissiale et Accueil des nouveaux arrivants
+   *Date : Dimanche 5 octobre 2025, 11h00*
+
+3. **Concert Aria Baroque** – Vivaldi, Haendel et Bach
+   *Date : Samedi 14 mars, 16h00*
+
+4. **Concert au profit des personnes malades et handicapées** – Mozart, Gounod, Puccini, Charpentier…
+   *Date : Mardi 8 avril 2025, 20h00*
+
+5. **Concert ""Philippe Verdelot, l'Européen""** – Musique de la Renaissance
+   *Date : Lundi 29 septembre 2025, 20h00*","L'Église Sainte-Elisabeth de Hongrie accueille le Concert Aria Baroque avec des œuvres de Vivaldi, Haendel et Bach le samedi 14 mars à 16h00.",1.0,,,1.0
+Y a-t-il des événements à l'Église Saint Leu Saint Gilles ?,"[""Événement : Journée pour les groupes de prière d'Île-de-France\nDescription : Louange, enseignements, adoration, confessions, repas partagé, échange en petits groupes, prière des frères, messe du jour.\nLieu : Eglise Saint Leu Saint Gilles, Paris\nDate : Samedi 5 avril 2025, 09h30"", ""Événement : Concert L'Orchestre de la Bastille\nDescription : Direction Émilie Postel-Vinay\nLieu : Eglise Saint Leu Saint Gilles, Paris\nDate : Samedi 5 avril 2025, 20h30"", 'Événement : Hildegard von Garden - Concert méditatif\nDescription : Monodies chantées par Maud Gnidzaz (soprano)\nLieu : Eglise Saint Leu Saint Gilles, Paris\nDate : Vendredi 3 octobre 2025, 20h00', 'Événement : Chemin de croix de Saint-Leu-Saint-Gilles\nDescription : Départ à 15h30 de la Fontaine des Innocents.\nLieu : Fontaine des Innocents, Paris\nDate : Vendredi 18 avril 2025, 15h30', 'Événement : Hildegard von Garden - Concert méditatif\nDescription : Monodies chantées par Maud Gnidzaz (soprano)\nLieu : Eglise Saint Leu Saint Gilles, Paris\nDate : Mercredi 21 mai 2025, 19h30']","Oui, voici les événements à l'Église Saint Leu Saint Gilles :
+
+1. **Journée pour les groupes de prière d'Île-de-France**
+   - Date : Samedi 5 avril 2025, 09h30
+
+2. **Concert L'Orchestre de la Bastille**
+   - Date : Samedi 5 avril 2025, 20h30
+
+3. **Hildegard von Garden - Concert méditatif** (avec Maud Gnidzaz)
+   - Date : Vendredi 3 octobre 2025, 20h00
+
+4. **Hildegard von Garden - Concert méditatif** (avec Maud Gnidzaz)
+   - Date : Mercredi 21 mai 2025, 19h30",L'Église Saint Leu Saint Gilles accueille le concert de l'Orchestre de la Bastille dirigé par Émilie Postel-Vinay le samedi 5 avril 2025 à 20h30.,1.0,,0.49999999995,1.0
+Quel est le meilleur restaurant à Paris ?,"[""Événement : Bistrot éphémère\nDescription : Tous les jeudis de 19h30 à 21h, sur la place de l'église.\nLieu : Église Notre-Dame de l'Assomption des Buttes Chaumont, Paris\nDate : 3 juillet - 28 août 2025, les jeudis"", ""Événement : Conférence de Gilles Fumey\nDescription : Gilles Fumey  évoquera les rituels autour du repas, hier et aujourd'hui, en Occident et dans d'autres cultures, en faisant le lien avec la culture chrétienne.\nLieu : Paroisse Saint Médard 75005, Paris\nDate : Dimanche 30 mars 2025, 12h15"", 'Événement : Office de la Passion du Seigneur\nDescription : Vivre la Passion de notre Seigneur ...\nLieu : Église de La Madeleine, Paris\nDate : Vendredi 3 avril, 19h00', ""Événement : Connaissez-vous Chagall ? Les autoportraits de l'enfant chéri de la modernité\nDescription : Venez découvrir la peinture lors d’une pause-déjeuner artistique avec Mélina de Courcy au cœur du quartier latin.\nLieu : Collège des Bernardins, Paris\nDate : Lundi 3 novembre 2025, 12h45"", 'Événement : Le Lucernaire gourmand\nDescription : Jeûne et prière.\nLieu : Église Notre-Dame du Travail, Paris\nDate : 20 février - 27 mars, les vendredis']",Je ne sais pas. Les événements listés ne mentionnent aucun restaurant à Paris.,Je ne sais pas. Cette information ne figure pas dans ma base de données d'événements culturels.,0.0,,,1.0
+Quel est ton nom ?,"['Événement : Musique Elizabéthaine, le 2 octobre 2025\nDescription : Ensemble Qui Novi ?\nLieu : Église Saint-Pierre de Chaillot, Paris\nDate : Jeudi 2 octobre 2025, 20h30', ""Événement : Petits Chanteurs des Batignolles\nDescription : T'es qui dis, t'es d'où ?\nLieu : Église Sainte-Marie des Batignolles, Paris\nDate : Dimanche 22 juin 2025, 16h00"", ""Événement : Qui donc est l'homme ? Un trimestre de cours  (hors vacances scolaires) du 30 mars au 22 juin 2026\nDescription : La relation à Dieu comme clé de compréhension de l'existence humaine        2 heures de cours par semaine le mardi, au choix de 14h à 16h au CIF ou de 20h à 22h par zoom,  hors vacances scolaires.\nLieu : Le Centre pour l'Intelligence de la Foi, Paris\nDate : 30 mars - 22 juin, les lundis"", 'Événement : Formation ""Annoncer l\'Evangile aux musulmans de nos quartiers""\nDescription : Par le père Ramzi\nLieu : Saint Joseph des Nations, Paris\nDate : Vendredi 11 avril 2025, 20h30', 'Événement : Quintet de trombonnes\nDescription : par Les Trombatignolles\nLieu : Église Sainte-Marie des Batignolles, Paris\nDate : Dimanche 23 novembre 2025, 16h00']",Je ne sais pas.,Je ne sais pas. Je suis un assistant spécialisé dans les événements culturels à Paris.,0.0,,0.0,1.0
+Quelle est la météo à Paris aujourd'hui ?,"['Événement : Mercredi des cendres\nDescription : Horaire des messes\nLieu : Église Saint-Jacques du Haut-Pas, Paris\nDate : Mercredi 18 février, 12h05, 19h00', ""Événement : Les 10 ans de Laudato si' fêtés à Saint-Eustache\nDescription : Lecture en continu de Laudato si' le samedi, défis écologiques proposés le dimanche à travers le jeu Ma Petite Planète\nLieu : Église Saint-Eustache, Paris\nDate : 24 et 25 mai 2025"", 'Événement : Journée des Femmes\nDescription : Sainte\xa0? Pourquoi pas\xa0? Pourquoi pas moi\xa0? Cette année, la Journée des Femmes nous permettra peut-être de répondre à cette question que nous n’osons pas nous poser\xa0!\nLieu : Maison des Œuvres, paroisse Saint-Léon, Paris\nDate : Samedi 24 janvier, 09h00', 'Événement : Chemin de croix du 6e arrondissement\nDescription : Départ à 12h15, devant la Fontaine Saint-Michel, 5e, rassemblement dès 12h. Arrivée à Saint-Sulpice vers 13h50.\nLieu : Fontaine Saint-Michel, Paris\nDate : Vendredi 3 avril, 12h15', 'Événement : Fête de Sainte Marie-Madeleine\nDescription : Programme de la journée\nLieu : Église de La Madeleine, Paris\nDate : Mardi 22 juillet 2025, 12h30']",Je ne sais pas. Les informations disponibles ne concernent que des événements culturels ou religieux à Paris.,Je ne sais pas. Je suis spécialisé dans les événements culturels à Paris et ne dispose pas d'informations météorologiques.,1.0,,0.99999999998,1.0
+Comment aller à Paris depuis Lyon ?,"['Événement : 18 - 30 ans Vivre autrement les 3 Jours Saints\nDescription : Toi qui a entre 18 et 30 ans, viens vivre à la paroisse un temps privilégié  pendant la semaine sainte.\nLieu : paroisse Saint-Jean-Baptiste-de-la-Salle, Paris\nDate : 1 - 4 avril', 'Événement : Chemin de croix dans les rues du quartier\nDescription : Départ à 12h15 de Notre-Dame du Lys, passage à Notre-Dame de l’Arche d’Alliance, arrivée à Saint-Jean-Baptiste de La Salle.\nLieu : Chapelle Notre-Dame du Lys, Paris\nDate : Vendredi 3 avril, 12h15', 'Événement : Chemin de croix dans les rues du quartier\nDescription : Départ à 12h15 de Notre-Dame du Lys, passage à Notre-Dame de l’Arche d’Alliance, arrivée à Saint-Jean-Baptiste de La Salle.\nLieu : Chapelle Notre-Dame du Lys, Paris\nDate : Vendredi 18 avril 2025, 12h15', 'Événement : Assemblée Générale de l’association « Toi mon frère »\nDescription : Entrée libre\nLieu : Église Notre-Dame du Bon Conseil, Paris\nDate : Samedi 14 mars, 17h00', ""Événement : Chemin de Croix des Champs-Élysées\nDescription : Départ à 12h30 du rond-point des Champs-Élysées jusqu'à Saint-Pierre de Chaillot.\nLieu : Métro : Franklin-Roosevelt, Paris\nDate : Vendredi 3 avril, 12h00""]",Je ne sais pas comment aller à Paris depuis Lyon.,Je ne sais pas. Je suis spécialisé dans les événements culturels à Paris.,0.0,,0.0,1.0
+Quel est le prix d'un billet de métro à Paris ?,"['Événement : Ciné-Club\nDescription : Film : Invictus\nLieu : Salle de La Madeleine, Paris\nDate : Samedi 14 février, 19h00', ""Événement : Deux chefs-d'œuvre Art déco : l'église Sainte-Odile et son orgue\nDescription : Visite commentée\nLieu : Église Sainte-Odile, Paris\nDate : 20 et 21 septembre 2025"", 'Événement : Chemin de croix de Saint-Luc\nDescription : Départ à 12h de la station de tram T3b « Canal-Saint-Denis ».\nLieu : station Rosa Park, Paris\nDate : Vendredi 3 avril, 12h00', ""Événement : Qui donc est l'homme ? Un trimestre de cours  (hors vacances scolaires) du 30 mars au 22 juin 2026\nDescription : La relation à Dieu comme clé de compréhension de l'existence humaine        2 heures de cours par semaine le mardi, au choix de 14h à 16h au CIF ou de 20h à 22h par zoom,  hors vacances scolaires.\nLieu : Le Centre pour l'Intelligence de la Foi, Paris\nDate : 30 mars - 22 juin, les lundis"", 'Événement : Les quatre saisons de Vivaldi\nDescription : Concert à La Madeleine à Paris.\nLieu : Église de La Madeleine, Paris\nDate : Mardi 17 février, 20h00']",Je ne sais pas. Les informations sur les prix des billets de métro ne sont pas mentionnées dans le contexte des événements fournis.,Je ne sais pas. Cette information ne figure pas dans ma base de données d'événements culturels.,1.0,,0.4499999999775,1.0
+Y a-t-il des événements de corrida à Paris ?,"['Événement : La Légende des Héros : Don Quichotte à travers tous les arts\nDescription : Poète et chevalier errant à l’assaut de moulins, mais qui est Don Quichotte ? Cet atelier au Collège des Bernardins invite les enfants à explorer, à travers récits et images, le plus célèbre roman ...\nLieu : Collège des Bernardins, Paris\nDate : Mercredi 15 avril, 15h00', 'Événement : Rencontres\nDescription : Carême\nLieu : Salle Robert Mortier, paroisse Saint-Antoine de Padoue, Paris\nDate : 6 - 27 mars, les vendredis', 'Événement : Messe des Corses à Paris\nDescription : Présidée par le cardinal François Bustillo.\nLieu : Église Saint-Séverin, Paris\nDate : Mardi 9 décembre 2025, 19h00', 'Événement : Ciné-club : Le sens de la fête\nDescription : Dans Le Sens de la fête d’Éric Toledano et Olivier Nakache, un organisateur de mariage tente de gérer les imprévus chaotiques et des personnalités excentriques, alors que tout semble se liguer con...\nLieu : Collège des Bernardins, Paris\nDate : Samedi 21 juin 2025, 15h00', 'Événement : Parcours de carême\nDescription : Théotime\nLieu : Église Saint-François de Sales (ancienne église), Paris\nDate : 11 - 25 mars, les mercredis']",Je ne sais pas. Aucun événement de corrida n'est mentionné dans le contexte fourni.,Je ne sais pas. Aucun événement de corrida n'est référencé dans ma base de données.,1.0,,0.8666666666377778,1.0
+Y a-t-il des matchs de football à Paris ?,"['Événement : Ciné-Club\nDescription : Film : Invictus\nLieu : Salle de La Madeleine, Paris\nDate : Samedi 14 février, 19h00', ""Événement : Visite guidée de l'Église Saint-François-Xavier\nDescription : Visite commentée de l'église\nLieu : Église Saint-François-Xavier, Paris\nDate : Dimanche 21 septembre 2025, 15h30, 17h00"", 'Événement : Rencontres\nDescription : Carême\nLieu : Salle Robert Mortier, paroisse Saint-Antoine de Padoue, Paris\nDate : 6 - 27 mars, les vendredis', ""Événement : Visite guidée de l'église Notre-Dame des Blancs-Manteaux\nDescription : Visite commentée de l'église\nLieu : Église Notre-Dame des Blancs Manteaux, Paris\nDate : 20 et 21 septembre 2025"", 'Événement : Assemblée Générale de l’association « Toi mon frère »\nDescription : Entrée libre\nLieu : Église Notre-Dame du Bon Conseil, Paris\nDate : Samedi 14 mars, 17h00']",Je ne sais pas. Aucun événement lié au football n'est mentionné dans le contexte fourni.,Je ne sais pas. Aucun match de football n'est référencé dans ma base de données d'événements culturels.,1.0,,0.6791666666496875,0.5
+Y a-t-il des festivals de jazz à Paris ?,"['Événement : Fête de la musique\nDescription : De 16h à minuit, fête de la musique sur le parvis et dans Saint-Sulpice.\nLieu : Église Saint-Sulpice, Paris\nDate : Samedi 21 juin 2025, 16h00', 'Événement : Concert Nouvelles Etoiles\nDescription : Lauréats du concours Jeunes Talents Internationaux\nLieu : Église Saint-Jacques du Haut-Pas, Paris\nDate : Dimanche 25 janvier, 15h30', ""Événement : Concert de Printemps France Asie\nDescription : Ce programme de musique sacrée et classique réunira voix et instruments autour d'oeuvres de Bach, Mozart, Brahms et autres compositeurs. Venez partager un moment musical, lumineux et spirituel.\nLieu : Église Saint-Jacques du Haut-Pas, Paris\nDate : Dimanche 8 mars, 15h30"", ""Événement : Journées du Patrimoine\nDescription : visites en français et en anglais, conférence et présentation de l'orgue\nLieu : Église Saint-Louis en l'Île, Paris\nDate : 20 et 21 septembre 2025"", 'Événement : FESTIVAL 36H EGLISE SAINT EUSTACHE\nDescription : Fête de la musique 2025\nLieu : Festival 36h Eglise Saint-Eustache, Paris\nDate : Samedi 21 juin 2025, 12h00']","D'après les événements fournis, il n'y a pas de festival de jazz mentionné.",Je ne sais pas. Aucun festival de jazz n'est référencé dans ma base de données pour le moment.,1.0,,0.8666666666377778,0.0
+Y a-t-il des spectacles de cirque à Paris ?,"['Événement : Spectacle “Rien à faire” solo pour un clown\nDescription : Par Fabrice Hadjadj, interprété par Philippe Rousseaux.\nLieu : Crypte de Saint-Pierre du Gros-Caillou, Paris\nDate : Vendredi 28 mars 2025, 20h30', 'Événement : Mozart au paradis\nDescription : Sur un texte de Fabrice Hadjadj, plongez dans l’œuvre de Mozart avec Philippe Chevallier et découvrez tout ce que la musique peut changer en nous. Un spectacle musical et philosophique, drôle et pr...\nLieu : Collège des Bernardins, Paris\nDate : Jeudi 15 janvier, 20h00', ""Événement : Spectacle Akedia, le Diable au désert\nDescription : Texte : Adrien Candiard Comédiens : Jules Meary et Gerard Rouzier Musicien : Francesco Agnello Mise en scène et musique : Francesco Agnello  Durée : 1 h 15\nLieu : Église Saint-Louis en l'Île, Paris\nDate : Mercredi 26 mars 2025, 20h30"", 'Événement : Le Sacre - Spectacle de danse\nDescription : Venez découvrir une composition collective dansée et chantée a capella en déambulation dans les différents espaces du Collège des Bernardins, interprétée par le collectif La Ville en Feu.\nLieu : Collège des Bernardins, Paris\nDate : Dimanche 22 mars, 15h30', 'Événement : Mozart Jeune public : la Symphonie des jouets\nDescription : Pour la Saison Mozart au Collège des Bernardins, participez à cette représentation de la Symphonie des jouets pensée spécialement pour le jeune public, une belle occasion pour découvrir la musique ...\nLieu : Collège des Bernardins, Paris\nDate : Mercredi 3 juin, 15h00']","D'après les événements fournis, il n'y a **aucun spectacle de cirque** à Paris dans ce contexte.",Je ne sais pas. Aucun spectacle de cirque n'est référencé dans ma base de données d'événements culturels.,0.0,,0.8055555555287036,1.0
+Y a-t-il des expositions de peinture contemporaine à Paris ?,"[""Événement : Connaissez-vous Chagall ? Les autoportraits de l'enfant chéri de la modernité\nDescription : Venez découvrir la peinture lors d’une pause-déjeuner artistique avec Mélina de Courcy au cœur du quartier latin.\nLieu : Collège des Bernardins, Paris\nDate : Lundi 3 novembre 2025, 12h45"", ""Événement : Les peintures murales de l'église du Saint-Esprit : les artistes femmes à l'honneur (12e arr.)\nDescription : Visite commentée\nLieu : Église du Saint-Esprit, Paris\nDate : Samedi 20 septembre 2025, 16h00"", 'Événement : Rencontres\nDescription : Carême\nLieu : Salle Robert Mortier, paroisse Saint-Antoine de Padoue, Paris\nDate : 6 - 27 mars, les vendredis', ""Événement : Peintures murales du XIXe siècle de l'église Saint-Vincent-de-Paul (10e arr.)\nDescription : Visite commentée\nLieu : Église Saint-Vincent-De-Paul, Paris\nDate : Dimanche 21 septembre 2025, 16h00"", 'Événement : Chagall et le mythe du juif errant\nDescription : Venez découvrir la peinture lors d’une pause-déjeuner artistique avec Mélina de Courcy au cœur du quartier latin.\nLieu : Collège des Bernardins, Paris\nDate : Lundi 11 mai, 12h45']","D'après les événements fournis, je ne vois pas d'exposition de peinture contemporaine à Paris. Les événements mentionnés concernent principalement des visites commentées de peintures murales ou des pauses-déjeuner artistiques sur des thèmes spécifiques (Chagall, artistes femmes, etc.), mais rien de contemporain.",Je ne sais pas. Aucune exposition de peinture contemporaine n'est référencée dans ma base de données pour le moment.,0.6,,0.6791666666496875,0.0

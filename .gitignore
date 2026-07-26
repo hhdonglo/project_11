@@ -1,0 +1,26 @@
+cat > .gitignore << 'EOF'
+# Environment
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Data (all generated artifacts, reconstructed by pipeline.sh)
+data/
+
+# IDE / editor
+.vscode/
+.idea/
+.kilo/
+*.DS_Store
+Icon?
+
+# Office lock files
+~$*
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+EOF
