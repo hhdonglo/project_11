@@ -1,5 +1,9 @@
 # Puls-Events RAG — Assistant pour la recommandation d'evenements culturels
 
+#GitHub
+https://github.com/hhdonglo/project_11.git
+
+
 Systeme de Generation Augmentee par Recuperation (RAG) pour recommander des evenements culturels a Paris, developpe avec LangChain, Mistral AI et FAISS.
 
 **Projet :** OpenClassrooms Projet 11, Concevoir et deployer un systeme RAG
