@@ -5,7 +5,7 @@
 # =============================================================================
 # Satisfies the project brief requirement: "integration of LangChain, Mistral,
 # and Faiss" as the single, real implementation of the RAG chain — not a
-# side script. src/app/chatbot.py (live demo) and src/rag/evaluate.py
+# side script. src/project_11/app/chatbot.py (live demo) and src/project_11/rag/evaluate.py
 # (RAGAS evaluation) both import ask() from this module. There is no
 # duplicate retrieve/generate logic anywhere else in the codebase.
 #
@@ -43,28 +43,28 @@ for f in \
     "data/processed/metadata.json" \
     "data/processed/embeddings.npy" \
     "data/processed/chunks.json"; do
-    if [ ! -f "$ROOT/$f" ]; then
+    if [ ! -s "$ROOT/$f" ]; then
         echo "ERROR: Missing $f — run bash 03_index.sh first."
         exit 1
     fi
 done
 
 # --- Write langchain_chain.py to src/rag/ ---
-echo "Writing src/rag/langchain_chain.py..."
-mkdir -p "$ROOT/src/rag"
-touch "$ROOT/src/__init__.py"
-touch "$ROOT/src/rag/__init__.py"
+echo "Writing src/project_11/rag/langchain_chain.py..."
+mkdir -p "$ROOT/src/project_11/rag"
+touch "$ROOT/src/project_11/__init__.py"
+touch "$ROOT/src/project_11/rag/__init__.py"
 
-cat > "$ROOT/src/rag/langchain_chain.py" << 'EOF'
+cat > "$ROOT/src/project_11/rag/langchain_chain.py" << 'EOF'
 # =============================================================================
-# src/rag/langchain_chain.py
+# src/project_11/rag/langchain_chain.py
 # =============================================================================
 # CANONICAL RAG chain — the single implementation of retrieve + generate
 # used across the whole project, as required by the project brief:
 # "Complete versioned RAG system code ... with integration of LangChain,
 # Mistral, and Faiss."
 #
-# src/app/chatbot.py (Streamlit live demo) and src/rag/evaluate.py (RAGAS
+# src/project_11/app/chatbot.py (Streamlit live demo) and src/project_11/rag/evaluate.py (RAGAS
 # evaluation) both call ask() from this module. There is intentionally no
 # second, hand-rolled retrieve/generate loop anywhere else in the codebase —
 # a single source of truth for the RAG logic, per standard data engineering
@@ -82,8 +82,8 @@ cat > "$ROOT/src/rag/langchain_chain.py" << 'EOF'
 # is expected and absorbed automatically rather than crashing the caller.
 #
 # Usage:
-#   poetry run python src/rag/langchain_chain.py
-#   from src.rag.langchain_chain import ask, build_chain
+#   poetry run python src/project_11/rag/langchain_chain.py
+#   from src.project_11.rag.langchain_chain import ask, build_chain
 # =============================================================================
 
 import json
@@ -111,7 +111,7 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 # --- Paths ---
-ROOT        = Path(__file__).resolve().parents[2]
+ROOT        = Path(__file__).resolve().parents[3]
 ENV_PATH    = ROOT / ".env"
 INDEX_PATH  = ROOT / "data" / "processed" / "faiss_index.idx"
 META_PATH   = ROOT / "data" / "processed" / "metadata.json"
@@ -344,19 +344,19 @@ if __name__ == "__main__":
     log.info("\nLangChain integration verified successfully.")
 EOF
 
-echo "    src/rag/langchain_chain.py written."
+echo "    src/project_11/rag/langchain_chain.py written."
 
 # --- Run it as a smoke test ---
 echo ""
 echo "Running LangChain chain smoke test (2 sample questions)..."
 echo ""
 
-"$ROOT/.venv/bin/python" "$ROOT/src/rag/langchain_chain.py"
+"$ROOT/.venv/bin/python" "$ROOT/src/project_11/rag/langchain_chain.py"
 
 echo ""
 echo "=============================================="
 echo "  Step 5 complete."
-echo "  Module: src/rag/langchain_chain.py"
+echo "  Module: src/project_11/rag/langchain_chain.py"
 echo "  This is now the SINGLE canonical RAG chain,"
 echo "  imported by both chatbot.py and evaluate.py."
 echo "  Next:   bash 04_run.sh  or  bash 06_evaluate.sh"

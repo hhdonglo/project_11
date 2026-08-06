@@ -1,14 +1,14 @@
 # =============================================================================
-# src/app/chatbot.py
+# src/project_11/app/chatbot.py
 # =============================================================================
 # Puls-Events RAG — Cultural Event Chatbot
 # Streamlit interface running on the canonical LangChain + Mistral + FAISS
-# chain defined in src/rag/langchain_chain.py. This file contains NO
+# chain defined in src/project_11/rag/langchain_chain.py. This file contains NO
 # duplicate retrieve/generate logic — it imports ask() directly, so the
 # live demo genuinely exercises the LangChain integration.
 #
 # Usage:
-#   poetry run streamlit run src/app/chatbot.py
+#   poetry run streamlit run src/project_11/app/chatbot.py
 # =============================================================================
 
 import logging
@@ -19,11 +19,11 @@ import streamlit as st
 
 # --- Make the project root importable so `from src.rag...` works
 # regardless of the working directory Streamlit was launched from ---
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.rag.langchain_chain import ask  # noqa: E402
+from src.project_11.rag.langchain_chain import ask  # noqa: E402
 
 logging.basicConfig(
     level=logging.INFO,

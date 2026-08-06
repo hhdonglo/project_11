@@ -1,0 +1,349 @@
+
+==============================================
+  Puls-Events RAG — Full Pipeline
+  2026-08-06 17:00:03
+==============================================
+  Mode      : SMART — completed steps skipped
+  Chatbot   : SKIPPED (--skip-run)
+
+
+==============================================
+  Step 1/7 — Fetch Events
+==============================================
+
+  → data/raw/events_paris.json (already exists — skipping)
+  → data/raw/fetch_metadata.json (already exists — skipping)
+
+==============================================
+  Step 2/7 — Chunk & Embed Events
+==============================================
+
+  → data/processed/chunks.json (already exists — skipping)
+  → data/processed/embeddings.npy (already exists — skipping)
+
+==============================================
+  Step 3/7 — Build FAISS Index
+==============================================
+
+  → data/processed/faiss_index.idx (already exists — skipping)
+  → data/processed/metadata.json (already exists — skipping)
+
+==============================================
+  Step 4/7 — Unit Tests
+==============================================
+
+
+==============================================
+  Step 4 — Unit Tests
+==============================================
+
+Writing tests/test_data_pipeline.py...
+    tests/test_data_pipeline.py written.
+
+Running pytest...
+
+============================= test session starts ==============================
+platform darwin -- Python 3.13.5, pytest-9.0.2, pluggy-1.6.0 -- /Users/hopedonglo/Documents/Projects/OpenClassRooms/OpenClassroom_Projects/project_11/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/hopedonglo/Documents/Projects/OpenClassRooms/OpenClassroom_Projects/project_11
+configfile: pyproject.toml
+plugins: anyio-4.12.1, cov-7.1.0, langsmith-0.7.22
+collecting ... collected 25 items
+
+tests/test_data_pipeline.py::TestRawData::test_raw_file_exists PASSED    [  4%]
+tests/test_data_pipeline.py::TestRawData::test_fetch_metadata_exists PASSED [  8%]
+tests/test_data_pipeline.py::TestRawData::test_raw_events_not_empty PASSED [ 12%]
+tests/test_data_pipeline.py::TestRawData::test_all_events_have_title PASSED [ 16%]
+tests/test_data_pipeline.py::TestRawData::test_all_events_have_description PASSED [ 20%]
+tests/test_data_pipeline.py::TestRawData::test_all_events_have_date PASSED [ 24%]
+tests/test_data_pipeline.py::TestDateFilter::test_all_events_within_one_year PASSED [ 28%]
+tests/test_data_pipeline.py::TestDateFilter::test_no_future_events_beyond_two_years PASSED [ 32%]
+tests/test_data_pipeline.py::TestDateFilter::test_date_range_is_reasonable PASSED [ 36%]
+tests/test_data_pipeline.py::TestLocationFilter::test_majority_events_in_paris PASSED [ 40%]
+tests/test_data_pipeline.py::TestLocationFilter::test_all_events_have_city PASSED [ 44%]
+tests/test_data_pipeline.py::TestLocationFilter::test_no_postal_code_anomalies PASSED [ 48%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_index_file_exists PASSED [ 52%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_metadata_file_exists PASSED [ 56%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_index_not_empty PASSED [ 60%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_index_dimension PASSED [ 64%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_index_metadata_sync PASSED [ 68%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_embeddings_shape PASSED [ 72%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_embeddings_dtype PASSED [ 76%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_embeddings_chunks_sync PASSED [ 80%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_index_search_returns_results PASSED [ 84%]
+tests/test_data_pipeline.py::TestVectorDatabase::test_metadata_has_required_fields PASSED [ 88%]
+tests/test_data_pipeline.py::TestChunkQuality::test_chunks_not_empty PASSED [ 92%]
+tests/test_data_pipeline.py::TestChunkQuality::test_chunks_contain_event_marker PASSED [ 96%]
+tests/test_data_pipeline.py::TestChunkQuality::test_chunks_have_url PASSED [100%]
+
+=============================== warnings summary ===============================
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyPacked has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type SwigPyObject has no __module__ attribute
+
+<frozen importlib._bootstrap>:488
+  <frozen importlib._bootstrap>:488: DeprecationWarning: builtin type swigvarlink has no __module__ attribute
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 25 passed, 3 warnings in 0.81s ========================
+
+==============================================
+  All tests passed.
+==============================================
+
+  ✓ All unit tests passed.
+
+==============================================
+  Step 5/7 — LangChain Integration
+==============================================
+
+
+==============================================
+  Step 5 — LangChain Integration
+==============================================
+
+Writing src/rag/langchain_chain.py...
+    src/rag/langchain_chain.py written.
+
+Running LangChain chain smoke test (2 sample questions)...
+
+/Users/hopedonglo/Documents/Projects/OpenClassRooms/OpenClassroom_Projects/project_11/src/rag/langchain_chain.py:44: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.
+  from langchain_community.docstore.in_memory import InMemoryDocstore
+17:00:06 [INFO] Building LangChain RAG chain from existing FAISS index...
+17:00:06 [INFO] 
+Question: Quels concerts de musique classique ont lieu a Paris ?
+17:00:07 [INFO] HTTP Request: HEAD https://huggingface.co/mistralai/Mixtral-8x7B-v0.1/resolve/main/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+17:00:07 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/mistralai/Mixtral-8x7B-v0.1/fc7ac94680e38d7348cfa806e51218e6273104b0/tokenizer.json "HTTP/1.1 200 OK"
+17:00:07 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:08 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:10 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:10 [INFO] Answer: Voici les concerts de musique classique à Paris disponibles dans le contexte :
+
+1. **Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart**
+   - **Date** : Mercredi 11 mars, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+2. **Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart**
+   - **Date** : Mardi 7 avril, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+3. **Concert spirituel**
+   - **Date** : 30 novembre - 21 décembre 2025, les dimanches (après la messe de 11h)
+   - **Lieu** : Basilique Sainte-Clotilde, Paris
+
+4. **Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart**
+   - **Date** : Samedi 28 mars, 20h00
+   - **Lieu** : Église de La Madeleine, Paris
+
+5. **Concert Aria Baroque** (Vivaldi, Haendel et Bach)
+   - **Date** : Samedi 14 mars, 16h00
+   - **Lieu** : Église Sainte-Elisabeth de Hongrie, Paris
+17:00:10 [INFO] Sources used: 5
+17:00:10 [INFO]   - Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart​ (Mercredi 11 mars, 20h00)
+17:00:10 [INFO]   - Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart (Mardi 7 avril, 20h00)
+17:00:10 [INFO]   - Concert spirituel (30 novembre - 21 décembre 2025, les dimanches)
+17:00:10 [INFO]   - Les 4 Saisons de Vivaldi, Petite Musique de Nuit de Mozart (Samedi 28 mars, 20h00)
+17:00:10 [INFO]   - Concert Aria Baroque (Samedi 14 mars, 16h00)
+17:00:10 [INFO] 
+Question: Quel est le meilleur restaurant a Paris ?
+17:00:10 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:11 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:13 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:13 [INFO] Answer: Je ne sais pas. Les événements fournis ne mentionnent aucun restaurant.
+17:00:13 [INFO] Sources used: 5
+17:00:13 [INFO]   - Office de la Passion du Seigneur (Vendredi 3 avril, 19h00)
+17:00:13 [INFO]   - Conférence de Gilles Fumey (Dimanche 30 mars 2025, 12h15)
+17:00:13 [INFO]   - Bistrot éphémère (3 juillet - 28 août 2025, les jeudis)
+17:00:13 [INFO]   - Le Lucernaire gourmand (20 février - 27 mars, les vendredis)
+17:00:13 [INFO]   - Connaissez-vous Chagall ? Les autoportraits de l'enfant chéri de la modernité (Lundi 3 novembre 2025, 12h45)
+17:00:13 [INFO] 
+LangChain integration verified successfully.
+
+==============================================
+  Step 5 complete.
+  Module: src/rag/langchain_chain.py
+  This is now the SINGLE canonical RAG chain,
+  imported by both chatbot.py and evaluate.py.
+  Next:   bash 04_run.sh  or  bash 06_evaluate.sh
+==============================================
+
+  ✓ LangChain integration verified → src/rag/langchain_chain.py
+
+==============================================
+  Pipeline Summary
+==============================================
+
+  Data artifacts:
+    data/raw/events_paris.json                    1.0M
+    data/raw/fetch_metadata.json                  4.0K
+    data/processed/chunks.json                    1.2M
+    data/processed/embeddings.npy                 6.8M
+    data/processed/faiss_index.idx                6.8M
+    data/processed/metadata.json                  1.1M
+
+  Total pipeline time: 0m 10s
+
+
+==============================================
+  Step 6/7 — RAGAS Evaluation
+==============================================
+
+
+==============================================
+  Step 6 — Evaluation
+==============================================
+
+Writing src/rag/evaluate.py...
+    src/rag/evaluate.py written (now backed by LangChain).
+
+Running evaluation pipeline...
+(This will make ~30+ API calls with retry/backoff — approx 2-6 minutes)
+
+17:00:14 [INFO] Starting evaluation pipeline (canonical LangChain chain)...
+17:00:14 [INFO] Processing 1/30: Q01 — Qu'est-ce que le concert Onestage à Paris ?...
+17:00:14 [INFO] HTTP Request: HEAD https://huggingface.co/mistralai/Mixtral-8x7B-v0.1/resolve/main/tokenizer.json "HTTP/1.1 307 Temporary Redirect"
+17:00:14 [INFO] HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/mistralai/Mixtral-8x7B-v0.1/fc7ac94680e38d7348cfa806e51218e6273104b0/tokenizer.json "HTTP/1.1 200 OK"
+17:00:15 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:16 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:17 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:18 [INFO] Processing 2/30: Q02 — Parlez-moi du concert des 4 Saisons de Vivaldi à P...
+17:00:19 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:19 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:21 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:22 [INFO] Processing 3/30: Q03 — Qu'est-ce que le Concert Aria Baroque ?...
+17:00:22 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:23 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:24 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:25 [INFO] Processing 4/30: Q04 — Quand a lieu le Requiem de Mozart et Boléro de Rav...
+17:00:26 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:27 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:28 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:30 [INFO] Processing 5/30: Q05 — Qu'est-ce que le concert spirituel à Paris ?...
+17:00:30 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:31 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:33 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:34 [INFO] Processing 6/30: Q06 — Qu'est-ce que le concert de l'Orchestre de la Bast...
+17:00:35 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:35 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:36 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:38 [INFO] Processing 7/30: Q07 — Quels concerts ont lieu en avril à Paris ?...
+17:00:38 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:39 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:40 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:42 [INFO] Processing 8/30: Q08 — Quels événements se déroulent en mars à Paris ?...
+17:00:42 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:42 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:44 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:46 [INFO] Processing 9/30: Q09 — Que faire ce weekend à Paris ?...
+17:00:46 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:47 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:48 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:49 [INFO] Processing 10/30: Q10 — Y a-t-il des événements culturels en juillet 2025 ...
+17:00:50 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:50 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:52 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:53 [INFO] Processing 11/30: Q11 — Quels événements ont lieu en décembre 2025 à Paris...
+17:00:54 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:54 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:56 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:00:57 [INFO] Processing 12/30: Q12 — Quels concerts de musique classique ont lieu à Par...
+17:00:57 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:00:58 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:01 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:02 [INFO] Processing 13/30: Q13 — Y a-t-il des événements religieux à Paris ?...
+17:01:03 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:04 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:05 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:06 [INFO] Processing 14/30: Q14 — Y a-t-il des événements gratuits à Paris ?...
+17:01:07 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:08 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:09 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:10 [INFO] Processing 15/30: Q15 — Quels événements musicaux sont disponibles à Paris...
+17:01:11 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:11 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:13 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:14 [INFO] Processing 16/30: Q16 — Y a-t-il des récitals d'orgue à Paris ?...
+17:01:15 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:15 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:17 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:19 [INFO] Processing 17/30: Q17 — Quels événements ont lieu à l'Église de La Madelei...
+17:01:19 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:19 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:21 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:23 [INFO] Processing 18/30: Q18 — Que se passe-t-il à la Basilique Sainte-Clotilde à...
+17:01:23 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:24 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:26 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:27 [INFO] Processing 19/30: Q19 — Quels événements ont lieu à l'Église Sainte-Elisab...
+17:01:28 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:28 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:30 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:32 [INFO] Processing 20/30: Q20 — Y a-t-il des événements à l'Église Saint Leu Saint...
+17:01:32 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:33 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:34 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:35 [INFO] Processing 21/30: Q21 — Quel est le meilleur restaurant à Paris ?...
+17:01:36 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:36 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:37 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:39 [INFO] Processing 22/30: Q22 — Quel est ton nom ?...
+17:01:39 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:40 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:40 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:42 [INFO] Processing 23/30: Q23 — Quelle est la météo à Paris aujourd'hui ?...
+17:01:42 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:43 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:43 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:45 [INFO] Processing 24/30: Q24 — Comment aller à Paris depuis Lyon ?...
+17:01:45 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:46 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:47 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:48 [INFO] Processing 25/30: Q25 — Quel est le prix d'un billet de métro à Paris ?...
+17:01:48 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:49 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:50 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:51 [INFO] Processing 26/30: Q26 — Y a-t-il des événements de corrida à Paris ?...
+17:01:51 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:52 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:52 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:54 [INFO] Processing 27/30: Q27 — Y a-t-il des matchs de football à Paris ?...
+17:01:54 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:55 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:55 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:01:57 [INFO] Processing 28/30: Q28 — Y a-t-il des festivals de jazz à Paris ?...
+17:01:57 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:57 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:01:58 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:02:00 [INFO] Processing 29/30: Q29 — Y a-t-il des spectacles de cirque à Paris ?...
+17:02:00 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:02:00 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:02:01 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:02:03 [INFO] Processing 30/30: Q30 — Y a-t-il des expositions de peinture contemporaine...
+17:02:03 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:02:04 [INFO] HTTP Request: POST https://api.mistral.ai/v1/embeddings "HTTP/1.1 200 OK"
+17:02:05 [INFO] HTTP Request: POST https://api.mistral.ai/v1/chat/completions "HTTP/1.1 200 OK"
+17:02:06 [INFO] Dataset saved → /Users/hopedonglo/Documents/Projects/OpenClassRooms/OpenClassroom_Projects/project_11/data/processed/test_dataset.csv (30 rows)
+17:02:06 [WARNING] RAGAS evaluation failed: dlopen(/Users/hopedonglo/Documents/Projects/OpenClassRooms/OpenClassroom_Projects/project_11/.venv/lib/python3.13/site-packages/pyarrow/lib.cpython-313-darwin.so, 0x0002): Library not loaded: @rpath/libarrow_compute.2300.dylib
+  Referenced from: <B38375CB-10A6-3A04-B798-888937AB00B9> /Users/hopedonglo/Documents/Projects/OpenClassRooms/OpenClassroom_Projects/project_11/.venv/lib/python3.13/site-packages/pyarrow/lib.cpython-313-darwin.so
+  Reason: tried: '/Users/hopedonglo/Documents/Projects/OpenClassRooms/OpenClassroom_Projects/project_11/.venv/lib/python3.13/site-packages/pyarrow/libarrow_compute.2300.dylib' (no such file), '/Users/hopedonglo/Documents/Projects/OpenClassRooms/OpenClassroom_Projects/project_11/.venv/lib/python3.13/site-packages/pyarrow/libarrow_compute.2300.dylib' (no such file), '/opt/homebrew/Caskroom/miniconda/base/bin/../lib/libarrow_compute.2300.dylib' (no such file), '/opt/homebrew/Caskroom/miniconda/base/bin/../lib/libarrow_compute.2300.dylib' (no such file)
+17:02:06 [WARNING] Skipping RAGAS. Dataset saved successfully.
+17:02:06 [INFO] Evaluation pipeline complete.
+
+==============================================
+  Step 6 complete.
+  Dataset : data/processed/test_dataset.csv
+  Results : data/processed/ragas_results.csv
+==============================================
+
+  ✓ Evaluation complete → data/processed/test_dataset.csv
+  Chatbot launch skipped (--skip-run).
+
+  To launch manually:
+  bash 04_run.sh
+
+==============================================
+  Pipeline complete.
+==============================================
+

@@ -1,5 +1,5 @@
 # =============================================================================
-# src/ingestion/fetch_events.py
+# src/project_11/ingestion/fetch_events.py
 # =============================================================================
 # Fetches cultural events from Open Agenda API, applies date and location
 # filters, cleans the data, and saves to data/raw/events_paris.json
@@ -9,9 +9,14 @@
 # not relative to "now" — this keeps tests passing even when run days or
 # months after the data was originally fetched.
 #
+# Network resilience: each page request is wrapped in retry logic with
+# exponential backoff. The Open Agenda API occasionally resets long-lived
+# connections after dozens of sequential requests — this is transient and
+# unrelated to the request itself, so a retry almost always succeeds.
+#
 # Usage:
-#   poetry run python src/ingestion/fetch_events.py
-#   poetry run python src/ingestion/fetch_events.py --force
+#   poetry run python src/project_11/ingestion/fetch_events.py
+#   poetry run python src/project_11/ingestion/fetch_events.py --force
 # =============================================================================
 
 import argparse
@@ -23,10 +28,11 @@ from pathlib import Path
 
 import pandas as pd
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 from dotenv import load_dotenv
 import os
 
-# --- Logging ---
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -34,13 +40,11 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-# --- Paths ---
-ROOT          = Path(__file__).resolve().parents[2]
+ROOT          = Path(__file__).resolve().parents[3]
 ENV_PATH      = ROOT / ".env"
 OUTPUT_PATH   = ROOT / "data" / "raw" / "events_paris.json"
 METADATA_PATH = ROOT / "data" / "raw" / "fetch_metadata.json"
 
-# --- Constants ---
 COLS = [
     "uid",
     "title.fr",
@@ -56,6 +60,29 @@ COLS = [
     "categories",
     "types-devenement",
 ]
+
+MAX_RETRIES_PER_PAGE = 5
+RETRY_BACKOFF_BASE    = 2  # seconds; doubles each retry: 2, 4, 8, 16, 32
+
+
+def build_session() -> requests.Session:
+    """
+    Build a requests Session with automatic retries for transient
+    HTTP-level failures (429, 500-504) baked into the adapter, on top
+    of the manual retry loop in fetch_all_events which also catches
+    lower-level connection resets that the adapter alone won't retry.
+    """
+    session = requests.Session()
+    retry_strategy = Retry(
+        total=3,
+        backoff_factor=1,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"],
+    )
+    adapter = HTTPAdapter(max_retries=retry_strategy)
+    session.mount("https://", adapter)
+    session.mount("http://", adapter)
+    return session
 
 
 def load_config() -> dict:
@@ -77,8 +104,55 @@ def load_config() -> dict:
     }
 
 
+def fetch_page_with_retry(
+    session: requests.Session, base_url: str, params: dict, page: int
+) -> dict:
+    """
+    Fetch a single page with manual retry + exponential backoff.
+
+    Catches connection-level failures (resets, chunked encoding errors,
+    timeouts) that occur mid-stream and are not retried by urllib3's
+    Retry adapter, since those only cover failures before a response
+    is received, not failures while reading the response body.
+    """
+    last_exception = None
+
+    for attempt in range(1, MAX_RETRIES_PER_PAGE + 1):
+        try:
+            response = session.get(base_url, params=params, timeout=30)
+
+            if response.status_code != 200:
+                raise RuntimeError(
+                    f"API error {response.status_code}: {response.text[:200]}"
+                )
+
+            return response.json()
+
+        except (
+            requests.exceptions.ChunkedEncodingError,
+            requests.exceptions.ConnectionError,
+            requests.exceptions.Timeout,
+        ) as e:
+            last_exception = e
+            if attempt < MAX_RETRIES_PER_PAGE:
+                wait = RETRY_BACKOFF_BASE ** attempt
+                log.warning(
+                    f"Page {page}: network error on attempt {attempt}/"
+                    f"{MAX_RETRIES_PER_PAGE} ({type(e).__name__}). "
+                    f"Retrying in {wait}s..."
+                )
+                time.sleep(wait)
+            else:
+                log.error(
+                    f"Page {page}: failed after {MAX_RETRIES_PER_PAGE} attempts."
+                )
+
+    raise last_exception
+
+
 def fetch_all_events(config: dict) -> list[dict]:
     """Fetch all events from Open Agenda API using cursor-based pagination."""
+    session    = build_session()
     all_events = []
     cursor     = None
     page       = 1
@@ -99,14 +173,7 @@ def fetch_all_events(config: dict) -> list[dict]:
             params["after[2]"] = cursor[2]
             params["after[3]"] = cursor[3]
 
-        response = requests.get(config["base_url"], params=params, timeout=30)
-
-        if response.status_code != 200:
-            raise RuntimeError(
-                f"API error {response.status_code}: {response.json()}"
-            )
-
-        data   = response.json()
+        data   = fetch_page_with_retry(session, config["base_url"], params, page)
         events = data.get("events", [])
         all_events.extend(events)
 
@@ -155,11 +222,9 @@ def clean_nulls(df: pd.DataFrame) -> pd.DataFrame:
     """Apply cleaning rules for null values."""
     before = len(df)
 
-    # Drop rows with no title or description — unusable for RAG
     df = df.dropna(subset=["title.fr", "description.fr"])
     log.info(f"Dropped {before - len(df)} rows with null title/description")
 
-    # Fix null city based on attendance mode
     if "location.city" in df.columns:
         df["location.city"] = df.apply(
             lambda row: "En ligne" if row["attendanceMode"] == 2
@@ -167,7 +232,6 @@ def clean_nulls(df: pd.DataFrame) -> pd.DataFrame:
             else row["location.city"]),
             axis=1
         )
-        # Fix postal code anomaly
         df["location.city"] = df["location.city"].replace("75015 Paris", "Paris")
 
     return df
@@ -195,8 +259,6 @@ def save_fetch_metadata(metadata_path: Path, max_age_days: int) -> None:
 
     Downstream unit tests (TestDateFilter) load this timestamp and validate
     event recency relative to it, rather than relative to datetime.now().
-    Without this, tests silently start failing weeks/months after the data
-    was fetched, even though the pipeline itself is working correctly.
     """
     metadata_path.parent.mkdir(parents=True, exist_ok=True)
     metadata = {

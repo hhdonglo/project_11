@@ -30,13 +30,13 @@ if [ ! -f "$ROOT/.venv/bin/python" ]; then
     exit 1
 fi
 
-if [ ! -f "$ROOT/data/processed/chunks.json" ]; then
+if [ ! -s "$ROOT/data/processed/chunks.json" ]; then
     echo "ERROR: data/processed/chunks.json not found."
     echo "Run: bash 02_embed.sh first."
     exit 1
 fi
 
-if [ ! -f "$ROOT/data/processed/embeddings.npy" ]; then
+if [ ! -s "$ROOT/data/processed/embeddings.npy" ]; then
     echo "ERROR: data/processed/embeddings.npy not found."
     echo "Run: bash 02_embed.sh first."
     exit 1
@@ -48,20 +48,20 @@ if [ "$1" == "--force" ]; then
     echo "Force mode: rebuilding index even if it exists."
 fi
 
-echo "Writing src/vector_store/build_index.py..."
-mkdir -p "$ROOT/src/vector_store"
-touch "$ROOT/src/vector_store/__init__.py"
+echo "Writing src/project_11/vector_store/build_index.py..."
+mkdir -p "$ROOT/src/project_11/vector_store"
+touch "$ROOT/src/project_11/vector_store/__init__.py"
 
-cat > "$ROOT/src/vector_store/build_index.py" << 'EOF'
+cat > "$ROOT/src/project_11/vector_store/build_index.py" << 'EOF'
 # =============================================================================
-# src/vector_store/build_index.py
+# src/project_11/vector_store/build_index.py
 # =============================================================================
 # Loads chunks and embeddings, builds a FAISS IndexFlatL2 index,
 # saves the index and a parallel metadata JSON file.
 #
 # Usage:
-#   poetry run python src/vector_store/build_index.py
-#   poetry run python src/vector_store/build_index.py --force
+#   poetry run python src/project_11/vector_store/build_index.py
+#   poetry run python src/project_11/vector_store/build_index.py --force
 #
 # Outputs:
 #   data/processed/faiss_index.idx  — FAISS binary index
@@ -83,7 +83,7 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-ROOT        = Path(__file__).resolve().parents[2]
+ROOT        = Path(__file__).resolve().parents[3]
 CHUNKS_PATH = ROOT / "data" / "processed" / "chunks.json"
 EMBED_PATH  = ROOT / "data" / "processed" / "embeddings.npy"
 INDEX_PATH  = ROOT / "data" / "processed" / "faiss_index.idx"
@@ -197,13 +197,13 @@ if __name__ == "__main__":
     main(force=args.force)
 EOF
 
-echo "    src/vector_store/build_index.py written."
+echo "    src/project_11/vector_store/build_index.py written."
 
 echo ""
-echo "Running src/vector_store/build_index.py..."
+echo "Running src/project_11/vector_store/build_index.py..."
 echo ""
 
-"$ROOT/.venv/bin/python" "$ROOT/src/vector_store/build_index.py" $FORCE
+"$ROOT/.venv/bin/python" "$ROOT/src/project_11/vector_store/build_index.py" $FORCE
 
 echo ""
 echo "=============================================="

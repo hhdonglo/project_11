@@ -36,14 +36,14 @@ if [ "$1" == "--force" ]; then
     echo "Force mode: re-fetching even if data exists."
 fi
 
-echo "Writing src/ingestion/fetch_events.py..."
-mkdir -p "$ROOT/src/ingestion"
-touch "$ROOT/src/__init__.py"
-touch "$ROOT/src/ingestion/__init__.py"
+echo "Writing src/project_11/ingestion/fetch_events.py..."
+mkdir -p "$ROOT/src/project_11/ingestion"
+touch "$ROOT/src/project_11/__init__.py"
+touch "$ROOT/src/project_11/ingestion/__init__.py"
 
-cat > "$ROOT/src/ingestion/fetch_events.py" << 'EOF'
+cat > "$ROOT/src/project_11/ingestion/fetch_events.py" << 'EOF'
 # =============================================================================
-# src/ingestion/fetch_events.py
+# src/project_11/ingestion/fetch_events.py
 # =============================================================================
 # Fetches cultural events from Open Agenda API, applies date and location
 # filters, cleans the data, and saves to data/raw/events_paris.json
@@ -59,8 +59,8 @@ cat > "$ROOT/src/ingestion/fetch_events.py" << 'EOF'
 # unrelated to the request itself, so a retry almost always succeeds.
 #
 # Usage:
-#   poetry run python src/ingestion/fetch_events.py
-#   poetry run python src/ingestion/fetch_events.py --force
+#   poetry run python src/project_11/ingestion/fetch_events.py
+#   poetry run python src/project_11/ingestion/fetch_events.py --force
 # =============================================================================
 
 import argparse
@@ -84,7 +84,7 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-ROOT          = Path(__file__).resolve().parents[2]
+ROOT          = Path(__file__).resolve().parents[3]
 ENV_PATH      = ROOT / ".env"
 OUTPUT_PATH   = ROOT / "data" / "raw" / "events_paris.json"
 METADATA_PATH = ROOT / "data" / "raw" / "fetch_metadata.json"
@@ -366,13 +366,13 @@ if __name__ == "__main__":
     main(force=args.force)
 EOF
 
-echo "    src/ingestion/fetch_events.py written."
+echo "    src/project_11/ingestion/fetch_events.py written."
 
 echo ""
-echo "Running src/ingestion/fetch_events.py..."
+echo "Running src/project_11/ingestion/fetch_events.py..."
 echo ""
 
-"$ROOT/.venv/bin/python" "$ROOT/src/ingestion/fetch_events.py" $FORCE
+"$ROOT/.venv/bin/python" "$ROOT/src/project_11/ingestion/fetch_events.py" $FORCE
 
 echo ""
 echo "=============================================="

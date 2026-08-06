@@ -33,7 +33,7 @@ for f in \
     "data/processed/embeddings.npy" \
     "data/processed/faiss_index.idx" \
     "data/processed/metadata.json"; do
-    if [ ! -f "$ROOT/$f" ]; then
+    if [ ! -s "$ROOT/$f" ]; then
         echo "ERROR: Missing required artifact: $f"
         MISSING=true
     fi

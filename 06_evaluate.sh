@@ -3,7 +3,7 @@
 # =============================================================================
 # 06_evaluate.sh — Build annotated test dataset and run RAGAS evaluation
 # =============================================================================
-# The evaluation script now imports ask() from src/rag/langchain_chain.py —
+# The evaluation script now imports ask() from src/project_11/rag/langchain_chain.py —
 # the SAME LangChain + Mistral + FAISS chain used by the live Streamlit
 # demo. There is no separate hand-rolled retrieve/generate logic in this
 # file anymore, so RAGAS is evaluating exactly what the chatbot serves to
@@ -36,30 +36,30 @@ fi
 for f in \
     "data/processed/faiss_index.idx" \
     "data/processed/metadata.json"; do
-    if [ ! -f "$ROOT/$f" ]; then
+    if [ ! -s "$ROOT/$f" ]; then
         echo "ERROR: Missing $f — run bash 03_index.sh first."
         exit 1
     fi
 done
 
-if [ ! -f "$ROOT/src/rag/langchain_chain.py" ]; then
-    echo "ERROR: src/rag/langchain_chain.py not found."
+if [ ! -s "$ROOT/src/project_11/rag/langchain_chain.py" ]; then
+    echo "ERROR: src/project_11/rag/langchain_chain.py not found."
     echo "Run: bash 07_langchain_integration.sh first."
     exit 1
 fi
 
 # --- Write evaluation script ---
-echo "Writing src/rag/evaluate.py..."
-mkdir -p "$ROOT/src/rag"
-touch "$ROOT/src/rag/__init__.py"
+echo "Writing src/project_11/rag/evaluate.py..."
+mkdir -p "$ROOT/src/project_11/rag"
+touch "$ROOT/src/project_11/rag/__init__.py"
 
-cat > "$ROOT/src/rag/evaluate.py" << 'EOF'
+cat > "$ROOT/src/project_11/rag/evaluate.py" << 'EOF'
 # =============================================================================
-# src/rag/evaluate.py
+# src/project_11/rag/evaluate.py
 # =============================================================================
 # Builds an annotated test dataset and runs RAGAS evaluation.
 #
-# Uses ask() from src/rag/langchain_chain.py — the SAME LangChain +
+# Uses ask() from src/project_11/rag/langchain_chain.py — the SAME LangChain +
 # Mistral + FAISS chain that powers the live Streamlit chatbot. This
 # guarantees RAGAS evaluates exactly what users interact with, rather
 # than a second, independently-maintained implementation that could
@@ -78,7 +78,7 @@ cat > "$ROOT/src/rag/evaluate.py" << 'EOF'
 # on the free/shared tier even with per-call retries.
 #
 # Usage:
-#   poetry run python src/rag/evaluate.py
+#   poetry run python src/project_11/rag/evaluate.py
 # =============================================================================
 
 import json
@@ -90,11 +90,11 @@ from pathlib import Path
 import pandas as pd
 
 # --- Make the project root importable ---
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.rag.langchain_chain import ask  # noqa: E402
+from src.project_11.rag.langchain_chain import ask  # noqa: E402
 
 logging.basicConfig(
     level=logging.INFO,
@@ -419,7 +419,7 @@ if __name__ == "__main__":
     main()
 EOF
 
-echo "    src/rag/evaluate.py written (now backed by LangChain)."
+echo "    src/project_11/rag/evaluate.py written (now backed by LangChain)."
 
 # --- Run evaluation ---
 echo ""
@@ -427,7 +427,7 @@ echo "Running evaluation pipeline..."
 echo "(This will make ~30+ API calls with retry/backoff — approx 2-6 minutes)"
 echo ""
 
-"$ROOT/.venv/bin/python" "$ROOT/src/rag/evaluate.py"
+"$ROOT/.venv/bin/python" "$ROOT/src/project_11/rag/evaluate.py"
 
 echo ""
 echo "=============================================="

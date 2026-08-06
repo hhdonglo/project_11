@@ -1,9 +1,9 @@
 # =============================================================================
-# src/rag/evaluate.py
+# src/project_11/rag/evaluate.py
 # =============================================================================
 # Builds an annotated test dataset and runs RAGAS evaluation.
 #
-# Uses ask() from src/rag/langchain_chain.py — the SAME LangChain +
+# Uses ask() from src/project_11/rag/langchain_chain.py — the SAME LangChain +
 # Mistral + FAISS chain that powers the live Streamlit chatbot. This
 # guarantees RAGAS evaluates exactly what users interact with, rather
 # than a second, independently-maintained implementation that could
@@ -22,7 +22,7 @@
 # on the free/shared tier even with per-call retries.
 #
 # Usage:
-#   poetry run python src/rag/evaluate.py
+#   poetry run python src/project_11/rag/evaluate.py
 # =============================================================================
 
 import json
@@ -34,11 +34,11 @@ from pathlib import Path
 import pandas as pd
 
 # --- Make the project root importable ---
-ROOT = Path(__file__).resolve().parents[2]
+ROOT = Path(__file__).resolve().parents[3]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from src.rag.langchain_chain import ask  # noqa: E402
+from src.project_11.rag.langchain_chain import ask  # noqa: E402
 
 logging.basicConfig(
     level=logging.INFO,

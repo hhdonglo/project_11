@@ -98,8 +98,9 @@ log_step "Step 1/7 — Fetch Events"
 # used by 05_test.sh to validate event recency relative to fetch time (not
 # relative to "now"). Datasets fetched before this file existed will trigger
 # a re-fetch here automatically so the metadata sidecar gets created.
-if [ ! -f "$ROOT/data/raw/events_paris.json" ] || \
-   [ ! -f "$ROOT/data/raw/fetch_metadata.json" ] || \
+if [ ! -s "$ROOT/data/raw/events_paris.json" ] || \
+   [ ! -s "$ROOT/data/raw/fetch_metadata.json" ] || \
+   [ ! -s "$ROOT/src/project_11/ingestion/fetch_events.py" ] || \
    [ -n "$FORCE" ]; then
     bash "$SCRIPTS_DIR/01_fetch.sh" --force
     log_ok "Events fetched  → data/raw/events_paris.json"
@@ -116,10 +117,13 @@ log_step "Step 2/7 — Chunk & Embed Events"
 
 CHUNKS_DONE=false
 EMBED_DONE=false
-[ -f "$ROOT/data/processed/chunks.json" ]    && CHUNKS_DONE=true
-[ -f "$ROOT/data/processed/embeddings.npy" ] && EMBED_DONE=true
+SCRIPTS_2_DONE=false
+[ -s "$ROOT/data/processed/chunks.json" ]    && CHUNKS_DONE=true
+[ -s "$ROOT/data/processed/embeddings.npy" ] && EMBED_DONE=true
+[ -s "$ROOT/src/project_11/processing/chunker.py" ] && \
+[ -s "$ROOT/src/project_11/processing/embedder.py" ] && SCRIPTS_2_DONE=true
 
-if [ "$CHUNKS_DONE" = true ] && [ "$EMBED_DONE" = true ] && [ -z "$FORCE" ]; then
+if [ "$CHUNKS_DONE" = true ] && [ "$EMBED_DONE" = true ] && [ "$SCRIPTS_2_DONE" = true ] && [ -z "$FORCE" ]; then
     log_skip "data/processed/chunks.json"
     log_skip "data/processed/embeddings.npy"
 else
@@ -135,10 +139,12 @@ log_step "Step 3/7 — Build FAISS Index"
 
 INDEX_DONE=false
 META_DONE=false
-[ -f "$ROOT/data/processed/faiss_index.idx" ] && INDEX_DONE=true
-[ -f "$ROOT/data/processed/metadata.json" ]   && META_DONE=true
+SCRIPT_3_DONE=false
+[ -s "$ROOT/data/processed/faiss_index.idx" ] && INDEX_DONE=true
+[ -s "$ROOT/data/processed/metadata.json" ]   && META_DONE=true
+[ -s "$ROOT/src/project_11/vector_store/build_index.py" ] && SCRIPT_3_DONE=true
 
-if [ "$INDEX_DONE" = true ] && [ "$META_DONE" = true ] && [ -z "$FORCE" ]; then
+if [ "$INDEX_DONE" = true ] && [ "$META_DONE" = true ] && [ "$SCRIPT_3_DONE" = true ] && [ -z "$FORCE" ]; then
     log_skip "data/processed/faiss_index.idx"
     log_skip "data/processed/metadata.json"
 else
@@ -172,7 +178,7 @@ fi
 log_step "Step 5/7 — LangChain Integration"
 
 # NOTE: Required by the project brief — "integration of LangChain, Mistral,
-# and Faiss." src/rag/langchain_chain.py is the SINGLE implementation of
+# and Faiss." src/project_11/rag/langchain_chain.py is the SINGLE implementation of
 # the RAG chain, imported by both chatbot.py (Step 7) and evaluate.py
 # (Step 6). This step must succeed before either of those can run.
 if [ "$SKIP_LANGCHAIN" = true ]; then
@@ -182,8 +188,8 @@ if [ "$SKIP_LANGCHAIN" = true ]; then
         exit 1
     fi
 else
-    if [ ! -f "$ROOT/data/processed/faiss_index.idx" ]; then
-        log_error "FAISS index missing — cannot verify LangChain integration."
+    if [ ! -s "$ROOT/data/processed/faiss_index.idx" ]; then
+        log_error "FAISS index missing or empty — cannot verify LangChain integration."
         exit 1
     fi
     bash "$SCRIPTS_DIR/07_langchain_integration.sh"
@@ -194,7 +200,7 @@ else
         echo "  Run: bash 07_langchain_integration.sh for details."
         exit $LC_EXIT
     fi
-    log_ok "LangChain integration verified → src/rag/langchain_chain.py"
+    log_ok "LangChain integration verified → src/project_11/rag/langchain_chain.py"
 fi
 
 # =============================================================================

@@ -1,12 +1,12 @@
 # =============================================================================
-# src/rag/langchain_chain.py
+# src/project_11/rag/langchain_chain.py
 # =============================================================================
 # CANONICAL RAG chain — the single implementation of retrieve + generate
 # used across the whole project, as required by the project brief:
 # "Complete versioned RAG system code ... with integration of LangChain,
 # Mistral, and Faiss."
 #
-# src/app/chatbot.py (Streamlit live demo) and src/rag/evaluate.py (RAGAS
+# src/project_11/app/chatbot.py (Streamlit live demo) and src/project_11/rag/evaluate.py (RAGAS
 # evaluation) both call ask() from this module. There is intentionally no
 # second, hand-rolled retrieve/generate loop anywhere else in the codebase —
 # a single source of truth for the RAG logic, per standard data engineering
@@ -24,8 +24,8 @@
 # is expected and absorbed automatically rather than crashing the caller.
 #
 # Usage:
-#   poetry run python src/rag/langchain_chain.py
-#   from src.rag.langchain_chain import ask, build_chain
+#   poetry run python src/project_11/rag/langchain_chain.py
+#   from src.project_11.rag.langchain_chain import ask, build_chain
 # =============================================================================
 
 import json
@@ -53,7 +53,7 @@ logging.basicConfig(
 log = logging.getLogger(__name__)
 
 # --- Paths ---
-ROOT        = Path(__file__).resolve().parents[2]
+ROOT        = Path(__file__).resolve().parents[3]
 ENV_PATH    = ROOT / ".env"
 INDEX_PATH  = ROOT / "data" / "processed" / "faiss_index.idx"
 META_PATH   = ROOT / "data" / "processed" / "metadata.json"

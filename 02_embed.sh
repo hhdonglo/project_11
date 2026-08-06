@@ -30,7 +30,7 @@ if [ ! -f "$ROOT/.venv/bin/python" ]; then
     exit 1
 fi
 
-if [ ! -f "$ROOT/data/raw/events_paris.json" ]; then
+if [ ! -s "$ROOT/data/raw/events_paris.json" ]; then
     echo "ERROR: data/raw/events_paris.json not found."
     echo "Run: bash 01_fetch.sh first."
     exit 1
@@ -42,13 +42,13 @@ if [ "$1" == "--force" ]; then
     echo "Force mode: re-embedding even if outputs exist."
 fi
 
-echo "Writing src/processing/chunker.py..."
-mkdir -p "$ROOT/src/processing"
-touch "$ROOT/src/processing/__init__.py"
+echo "Writing src/project_11/processing/chunker.py..."
+mkdir -p "$ROOT/src/project_11/processing"
+touch "$ROOT/src/project_11/processing/__init__.py"
 
-cat > "$ROOT/src/processing/chunker.py" << 'EOF'
+cat > "$ROOT/src/project_11/processing/chunker.py" << 'EOF'
 # =============================================================================
-# src/processing/chunker.py
+# src/project_11/processing/chunker.py
 # =============================================================================
 # Loads cleaned events, builds one enriched text chunk per event,
 # and saves chunks with metadata to data/processed/chunks.json
@@ -65,7 +65,7 @@ from pathlib import Path
 
 log = logging.getLogger(__name__)
 
-ROOT       = Path(__file__).resolve().parents[2]
+ROOT       = Path(__file__).resolve().parents[3]
 INPUT_PATH = ROOT / "data" / "raw" / "events_paris.json"
 OUTPUT_PATH = ROOT / "data" / "processed" / "chunks.json"
 
@@ -135,20 +135,20 @@ def run(force: bool = False) -> list[dict]:
     return chunks
 EOF
 
-echo "    src/processing/chunker.py written."
+echo "    src/project_11/processing/chunker.py written."
 
-echo "Writing src/processing/embedder.py..."
+echo "Writing src/project_11/processing/embedder.py..."
 
-cat > "$ROOT/src/processing/embedder.py" << 'EOF'
+cat > "$ROOT/src/project_11/processing/embedder.py" << 'EOF'
 # =============================================================================
-# src/processing/embedder.py
+# src/project_11/processing/embedder.py
 # =============================================================================
 # Loads chunks, generates Mistral embeddings in batches,
 # and saves to data/processed/embeddings.npy
 #
 # Usage:
-#   poetry run python src/processing/embedder.py
-#   poetry run python src/processing/embedder.py --force
+#   poetry run python src/project_11/processing/embedder.py
+#   poetry run python src/project_11/processing/embedder.py --force
 #
 # Rate limit handling:
 #   Batch size: 5 | Sleep: 3s | On 429: wait 60s and retry
@@ -173,7 +173,7 @@ logging.basicConfig(
 )
 log = logging.getLogger(__name__)
 
-ROOT        = Path(__file__).resolve().parents[2]
+ROOT        = Path(__file__).resolve().parents[3]
 ENV_PATH    = ROOT / ".env"
 CHUNKS_PATH = ROOT / "data" / "processed" / "chunks.json"
 EMBED_PATH  = ROOT / "data" / "processed" / "embeddings.npy"
@@ -282,23 +282,23 @@ if __name__ == "__main__":
     main(force=args.force)
 EOF
 
-echo "    src/processing/embedder.py written."
+echo "    src/project_11/processing/embedder.py written."
 
 echo ""
-echo "Running src/processing/chunker.py..."
+echo "Running src/project_11/processing/chunker.py..."
 "$ROOT/.venv/bin/python" -c "
 import sys
-sys.path.insert(0, '$ROOT/src/processing')
+sys.path.insert(0, '$ROOT/src/project_11/processing')
 from chunker import run
 run(force=$( [ '$FORCE' == '--force' ] && echo 'True' || echo 'False' ))
 print('Chunker complete.')
 "
 
 echo ""
-echo "Running src/processing/embedder.py..."
+echo "Running src/project_11/processing/embedder.py..."
 "$ROOT/.venv/bin/python" -c "
 import sys
-sys.path.insert(0, '$ROOT/src/processing')
+sys.path.insert(0, '$ROOT/src/project_11/processing')
 from embedder import main
 main(force=$( [ '$FORCE' == '--force' ] && echo 'True' || echo 'False' ))
 "
