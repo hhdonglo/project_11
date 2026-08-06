@@ -1,104 +1,127 @@
-# Puls-Events RAG — Assistant pour la recommandation d'evenements culturels
-
-#GitHub
+# Puls-Events RAG — Cultural Event Assistant POC
 https://github.com/hhdonglo/project_11.git
 
+A Retrieval-Augmented Generation (RAG) system for personalised cultural event
+recommendations in Paris, built with LangChain, Mistral AI, and FAISS.
 
-Systeme de Generation Augmentee par Recuperation (RAG) pour recommander des evenements culturels a Paris, developpe avec LangChain, Mistral AI et FAISS.
-
-**Projet :** OpenClassrooms Projet 11, Concevoir et deployer un systeme RAG
-**Contexte de mission :** Puls-Events, Jeremy comme responsable technique
-**Auteur :** Hope Donglo
-
----
-
-## Presentation
-
-J'ai realise ce projet pour repondre a une question simple. Est-ce qu'un chatbot peut recommander des evenements culturels a Paris a partir de vraies donnees, sans inventer d'informations.
-
-Un assistant IA generique ne connait pas les evenements locaux recents. Il risque d'inventer des reponses plausibles mais fausses. J'ai donc construit un systeme RAG complet pour resoudre ce probleme.
-
-Voici les etapes de mon pipeline.
-
-1. Je recupere les evenements culturels en direct depuis l'API Open Agenda.
-2. Je nettoie et filtre ces evenements pour ne garder que ceux des douze derniers mois, situes a Paris.
-3. Je decoupe et vectorise ces evenements avec le modele mistral-embed.
-4. J'indexe les vecteurs dans FAISS.
-5. Je sers une interface conversationnelle avec Streamlit. Cette interface s'appuie sur une chaine LangChain qui recupere les evenements pertinents et genere des reponses en francais, ancrees dans les donnees reelles.
-
-La chaine LangChain qui alimente le chatbot en direct est exactement la meme que celle evaluee par RAGAS. Je n'ai pas duplique la logique de recuperation et de generation ailleurs dans le code.
+**Context:** OpenClassrooms Project 11 — *Design and deploy a RAG system*
+**Client scenario:** Puls-Events / Jeremy, Technical Manager
+**Author:** Hope Donglo
 
 ---
 
-## Structure du projet
+## Overview
+
+Puls-Events wants to test whether an AI chatbot can recommend cultural
+events in Paris from real, up-to-date data rather than a generic LLM's
+general knowledge (which cannot know about specific local events and
+would otherwise hallucinate).
+
+This project implements a full RAG pipeline:
+
+1. Fetch live cultural events from the Open Agenda API
+2. Clean and filter them to the past 12 months, Paris region
+3. Chunk and embed them with `mistral-embed`
+4. Index the vectors in FAISS
+5. Serve a conversational interface (Streamlit) backed by a **LangChain**
+   chain that retrieves relevant events and generates grounded, French,
+   hallucination-free answers via `mistral-small-latest`
+
+The same LangChain chain that powers the live chatbot is also the one
+evaluated by the RAGAS benchmark — there is a single implementation of the
+retrieval/generation logic in the codebase, not a parallel copy for each
+consumer.
+
+---
+
+## Project Structure
 
 ```
 puls-events-rag/
 ├── src/
-│   ├── ingestion/
-│   │   └── fetch_events.py       # Client API Open Agenda, nettoyage, fetch_metadata.json
-│   ├── processing/
-│   │   ├── chunker.py            # Construit un chunk enrichi par evenement
-│   │   └── embedder.py           # Envoie les evenements par lots vers mistral-embed
-│   ├── vector_store/
-│   │   └── build_index.py        # Construit l'index FAISS et metadata.json
-│   ├── rag/
-│   │   ├── langchain_chain.py    # Chaine RAG canonique (LangChain + Mistral + FAISS)
-│   │   └── evaluate.py           # Jeu de test annote et evaluation RAGAS
-│   └── app/
-│       └── chatbot.py            # Interface de chat Streamlit (importe langchain_chain.ask)
+│   └── project_11/                   # Poetry package root
+│       ├── __init__.py
+│       ├── ingestion/
+│       │   ├── __init__.py
+│       │   └── fetch_events.py       # Open Agenda API client, cleaning, fetch_metadata.json
+│       ├── processing/
+│       │   ├── __init__.py
+│       │   ├── chunker.py            # Builds one enriched text chunk per event
+│       │   └── embedder.py           # Batches events through mistral-embed
+│       ├── vector_store/
+│       │   ├── __init__.py
+│       │   └── build_index.py        # Builds the FAISS index + metadata.json
+│       ├── rag/
+│       │   ├── __init__.py
+│       │   ├── langchain_chain.py    # CANONICAL RAG chain (LangChain + Mistral + FAISS)
+│       │   └── evaluate.py           # Annotated dataset + RAGAS evaluation
+│       └── app/
+│           ├── __init__.py
+│           └── chatbot.py            # Streamlit chat interface (imports langchain_chain.ask)
 ├── tests/
-│   └── test_data_pipeline.py     # 25 tests unitaires pytest
+│   ├── __init__.py
+│   └── test_data_pipeline.py         # 25 pytest unit tests
 ├── notebooks/
-│   └── 01 a 04                   # Notebooks d'exploration (donnees, embedding, index, RAG)
+│   └── 01–04                         # Exploration notebooks (data, embedding, index, RAG)
 ├── data/
-│   ├── raw/                      # Evenements bruts et nettoyes, fetch_metadata.json (non versionnes)
-│   └── processed/                # Chunks, embeddings, index FAISS, resultats d'evaluation
-├── reports/                      # Rapport technique (Word/PDF)
-├── slides/                       # Presentation (PowerPoint, FR et EN)
-├── 01_fetch.sh                   # Scripts d'etape du pipeline (autonomes : ecrivent et executent)
+│   ├── raw/                          # Raw + cleaned events, fetch_metadata.json (not versioned)
+│   └── processed/                    # Chunks, embeddings, FAISS index, eval results
+├── reports/                          # Technical report (Word/PDF)
+├── slides/                           # Presentation (PowerPoint, FR + EN)
+├── 01_fetch.sh                       # Pipeline step scripts (self-contained: write + run)
 ├── 02_embed.sh
 ├── 03_index.sh
 ├── 04_run.sh
 ├── 05_test.sh
 ├── 06_evaluate.sh
 ├── 07_langchain_integration.sh
-├── pipeline.sh                   # Script maitre, execute les 7 etapes
-├── .env.example                  # Modele de variables d'environnement
-└── pyproject.toml                # Gestion des dependances avec Poetry
+├── pipeline.sh                       # Master orchestrator — runs all 7 steps
+├── .env.example                      # Environment variable template
+└── pyproject.toml                    # Poetry dependency management
 ```
+
+**Note on the package layout:** every `.py` file under `src/project_11/` is
+generated by its corresponding bash script — nothing under `src/` is meant
+to be hand-edited directly. Each script writes the file, then executes it
+immediately. Running `pipeline.sh` reconstructs the entire package and the
+vector database from scratch, on demand.
 
 ---
 
-## Installation
+## Setup
 
-### Prerequis
+### Prerequisites
 
-J'utilise Python 3.13. La contrainte est bornee a `>=3.13,<3.15` car faiss-cpu l'exige.
+- Python 3.13 (bounded to `>=3.13,<3.15` — required for `faiss-cpu` compatibility)
+- [Poetry](https://python-poetry.org/docs/#installation)
+- A Mistral AI API key with an active billing tier ([console.mistral.ai](https://console.mistral.ai))
+- An Open Agenda API key ([openagenda.com](https://openagenda.com))
 
-J'utilise Poetry pour gerer les dependances. La documentation d'installation est disponible sur python-poetry.org.
-
-Il faut aussi une cle API Mistral avec un niveau de facturation actif, disponible sur console.mistral.ai. Et une cle API Open Agenda, disponible sur openagenda.com.
-
-### Mise en place
+### Installation
 
 ```bash
 git clone <repo-url>
 cd puls-events-rag
 
 poetry install
-poetry add langchain-community
+poetry add langchain-community   # required by the LangChain FAISS wrapper
 
 cp .env.example .env
+# Edit .env with your API keys
 ```
 
-J'edite ensuite le fichier .env avec mes propres cles.
+### `pyproject.toml` package declaration
 
-### Contenu du fichier .env
+```toml
+[tool.poetry]
+packages = [{ include = "project_11", from = "src" }]
+```
+
+### `.env` contents
 
 ```
-MISTRAL_API_KEY=votre_cle_mistral
-OPENAGENDA_API_KEY=votre_cle_openagenda
+MISTRAL_API_KEY=your_mistral_api_key
+OPENAGENDA_API_KEY=your_openagenda_api_key
 AGENDA_UID=82290100
 MAX_EVENT_AGE_DAYS=365
 TOP_K_RESULTS=5
@@ -106,124 +129,153 @@ TOP_K_RESULTS=5
 
 ---
 
-## Utilisation
+## Usage
 
-### Tout executer d'un coup
+### Run everything, end to end
 
 ```bash
 bash pipeline.sh --skip-run
 ```
 
-Cette commande execute les 7 etapes du pipeline sans lancer le chatbot a la fin. Chaque etape est ignoree automatiquement si son fichier de sortie existe deja. J'ajoute l'option --force quand je veux tout reconstruire depuis zero.
+This runs all 7 steps (fetch → embed → index → tests → LangChain check →
+evaluation → chatbot) except the final chatbot launch. Each step is skipped
+automatically only if **both** its data output *and* its source `.py` file
+already exist and are non-empty — this prevents the pipeline from silently
+skipping a step whose source file was cleared but whose old data output
+was still sitting on disk. Pass `--force` to rebuild everything regardless.
 
-### Lancer la demonstration en direct
+### Launch the live demo
 
 ```bash
 bash pipeline.sh
 ```
 
-Ou, si les donnees et l'index existent deja :
+or, if the data/index already exist:
 
 ```bash
 bash 04_run.sh
 ```
 
-Le chatbot s'ouvre sur localhost:8501.
+Opens the chatbot at `http://localhost:8501`.
 
-### Executer les etapes une par une
+### Run steps individually
 
-| Etape | Commande | Produit |
+| Step | Command | Produces |
 |---|---|---|
-| 1. Recuperer les evenements | bash 01_fetch.sh --force | data/raw/events_paris.json, data/raw/fetch_metadata.json |
-| 2. Decouper et vectoriser | bash 02_embed.sh --force | data/processed/chunks.json, data/processed/embeddings.npy |
-| 3. Construire l'index FAISS | bash 03_index.sh --force | data/processed/faiss_index.idx, data/processed/metadata.json |
-| 4. Lancer les tests unitaires | bash 05_test.sh | resultats pytest, 25 tests |
-| 5. Verifier la chaine LangChain | bash 07_langchain_integration.sh | src/rag/langchain_chain.py, test de fumee |
-| 6. Lancer l'evaluation | bash 06_evaluate.sh | data/processed/test_dataset.csv, data/processed/ragas_results.csv |
-| 7. Lancer le chatbot | bash 04_run.sh | application Streamlit sur localhost:8501 |
+| 1. Fetch events | `bash 01_fetch.sh --force` | `data/raw/events_paris.json`, `data/raw/fetch_metadata.json`, `src/project_11/ingestion/fetch_events.py` |
+| 2. Chunk & embed | `bash 02_embed.sh --force` | `data/processed/chunks.json`, `data/processed/embeddings.npy`, `src/project_11/processing/chunker.py`, `embedder.py` |
+| 3. Build FAISS index | `bash 03_index.sh --force` | `data/processed/faiss_index.idx`, `data/processed/metadata.json`, `src/project_11/vector_store/build_index.py` |
+| 4. Run unit tests | `bash 05_test.sh` | `tests/test_data_pipeline.py`, pytest results (25 tests) |
+| 5. Verify LangChain chain | `bash 07_langchain_integration.sh` | `src/project_11/rag/langchain_chain.py`, smoke test |
+| 6. Run evaluation | `bash 06_evaluate.sh` | `data/processed/test_dataset.csv`, `data/processed/ragas_results.csv`, `src/project_11/rag/evaluate.py` |
+| 7. Launch chatbot | `bash 04_run.sh` | `src/project_11/app/chatbot.py`, Streamlit app on `localhost:8501` |
 
-### Options du pipeline
+### Pipeline flags
 
 ```bash
-bash pipeline.sh --force
-bash pipeline.sh --skip-run
-bash pipeline.sh --skip-test
-bash pipeline.sh --skip-langchain
-bash pipeline.sh --skip-eval
+bash pipeline.sh --force           # rebuild every step from scratch
+bash pipeline.sh --skip-run        # run everything except the chatbot launch
+bash pipeline.sh --skip-test       # skip the unit test gate
+bash pipeline.sh --skip-langchain  # skip LangChain verification (blocks eval/chatbot if used alone)
+bash pipeline.sh --skip-eval       # skip RAGAS evaluation
 ```
 
-L'option --force reconstruit chaque etape depuis zero. L'option --skip-run execute tout sauf le lancement du chatbot. L'option --skip-test saute la validation par les tests unitaires. L'option --skip-langchain saute la verification LangChain, mais elle bloque si j'essaie de lancer l'evaluation ou le chatbot en meme temps, puisque les deux en dependent. L'option --skip-eval saute l'evaluation RAGAS.
+### Resetting the package from scratch
+
+```bash
+rm -rf src/project_11
+find data -type f -empty -delete
+bash pipeline.sh --skip-run
+```
 
 ---
 
 ## Architecture
 
-Voici le flux general de mon systeme.
+```
+Open Agenda API → Clean & filter (12 months, Paris) → Chunk → Embed (mistral-embed)
+                                                                        │
+                                                                        ▼
+User query → src/project_11/rag/langchain_chain.py (LangChain: retriever → prompt → Mistral LLM)
+                                                                        │
+                                              ┌─────────────────────────┴─────────────────────────┐
+                                              ▼                                                     ▼
+                                   Streamlit chatbot (live demo)                     RAGAS evaluation (30 questions)
+```
 
-L'API Open Agenda fournit les evenements bruts. Je les nettoie et je les filtre sur douze mois et sur la region parisienne. Je les decoupe en chunks. J'envoie ces chunks a mistral-embed pour obtenir des vecteurs.
-
-Quand un utilisateur pose une question, celle-ci passe par src/rag/langchain_chain.py. Cette chaine LangChain recupere les evenements pertinents puis genere une reponse via le modele Mistral. Cette meme chaine sert deux usages differents. Le chatbot Streamlit l'utilise pour repondre en direct. Le script d'evaluation l'utilise pour tester 30 questions annotees avec RAGAS.
-
-Le module langchain_chain.py enveloppe l'index FAISS dans la classe FAISS de LangChain. J'utilise ChatMistralAI pour la generation. J'assemble la recuperation et la generation avec le langage d'expression LangChain, aussi appele LCEL. Le chatbot et le script d'evaluation appellent tous les deux la fonction ask() de ce module. Je n'ai pas de logique dupliquee ailleurs dans le code.
+`src/project_11/rag/langchain_chain.py` is the single implementation of the
+RAG chain. It wraps the FAISS index inside LangChain's `FAISS` vector store
+class, uses `ChatMistralAI` for generation, and assembles retrieval +
+generation as a LangChain Expression Language (LCEL) chain. Both the
+Streamlit chatbot and the evaluation script call `ask()` from this module —
+there is no duplicated retrieval/generation logic anywhere else in the
+codebase.
 
 ---
 
-## Qualite des donnees et tests
+## Data Quality & Testing
 
-Je valide que chaque evenement a moins de douze mois par rapport a la date de recuperation, et non par rapport a la date d'execution des tests. Cette date de recuperation est enregistree dans data/raw/fetch_metadata.json. Cette approche garde la suite de tests stable, meme si je l'execute plusieurs semaines apres avoir recupere les donnees.
+- Events are validated as less than 12 months old **relative to the fetch
+  timestamp** stored in `data/raw/fetch_metadata.json`, not relative to
+  "now" — this keeps the test suite stable regardless of how long ago the
+  data was fetched.
+- Network requests during ingestion use retry logic with exponential
+  backoff (both HTTP-level via `urllib3.Retry` and connection-level via a
+  manual retry wrapper), since the Open Agenda API occasionally resets
+  long-lived connections during large paginated fetches.
+- Mistral API calls (embeddings and chat completions) are wrapped in retry
+  logic that backs off on `429` / `service_tier_capacity_exceeded` errors.
+- 25 automated pytest tests run before the chatbot launches, covering:
 
-Les requetes reseau pendant la recuperation utilisent une logique de nouvelle tentative avec delai exponentiel. J'ai deux niveaux de protection. Le premier niveau gere les erreurs HTTP standard via urllib3. Le second niveau gere les coupures de connexion qui surviennent pendant la lecture de la reponse, un probleme que j'ai rencontre sur l'API Open Agenda lors de longues recuperations paginees.
-
-Les appels a l'API Mistral, que ce soit pour les embeddings ou pour la generation, passent aussi par une logique de nouvelle tentative. Cette logique gere les erreurs de limitation de debit.
-
-J'ai ecrit 25 tests automatises avec pytest. Ils s'executent avant chaque lancement du chatbot.
-
-| Groupe de tests | Nombre | Ce qu'il verifie |
+| Test group | Count | Covers |
 |---|---|---|
-| TestRawData | 6 | Presence du fichier, titres et descriptions non nuls, dates presentes, metadonnees de recuperation |
-| TestDateFilter | 3 | Recence sur douze mois par rapport a la date de recuperation, absence d'evenements trop lointains |
-| TestLocationFilter | 3 | Au moins 90% des evenements a Paris, absence de valeurs de ville nulles ou mal formees |
-| TestVectorDatabase | 10 | Dimension de l'index, synchronisation index et metadonnees, forme et type des embeddings, validite de la recherche |
-| TestChunkQuality | 3 | Texte de chunk non vide, marqueurs requis presents, URL valides |
+| `TestRawData` | 6 | File presence, non-null titles/descriptions/dates, fetch metadata |
+| `TestDateFilter` | 3 | 12-month recency (relative to fetch time), no far-future events |
+| `TestLocationFilter` | 3 | ≥90% events in Paris, no null/malformed city values |
+| `TestVectorDatabase` | 10 | Index dimension, index/metadata sync, embedding shape/dtype, search validity |
+| `TestChunkQuality` | 3 | Non-empty chunk text, required markers, valid URLs |
 
 ---
 
-## Pile technologique
+## Technology Stack
 
-| Composant | Technologie |
+| Component | Technology |
 |---|---|
-| Modele d'embedding | mistral-embed, 1024 dimensions |
-| Modele de generation | mistral-small-latest |
-| Orchestration | LangChain, chaine LCEL |
-| Base de donnees vectorielle | FAISS, IndexFlatL2 |
+| Embedding model | `mistral-embed` (1,024 dimensions) |
+| Generation model | `mistral-small-latest` |
+| Orchestration | LangChain (LCEL chain) |
+| Vector database | FAISS `IndexFlatL2` |
 | Interface | Streamlit |
-| Source de donnees | API Open Agenda v2 |
+| Data source | Open Agenda API v2 |
 | Evaluation | RAGAS |
-| Tests | pytest |
-| Gestion des dependances | Poetry |
-| Langage | Python 3.13 |
+| Testing | pytest |
+| Dependency management | Poetry |
+| Language | Python 3.13 |
+| Package layout | `src/project_11/` (Poetry `src` layout) |
 
 ---
 
-## Limites actuelles du POC
+## Known Limitations (POC scope)
 
-Je liste ici les limites que je connais pour cette version de preuve de concept.
+- Single Open Agenda agenda source (Deciding for Paris, UID 82290100)
+- Manual pipeline execution — no scheduled refresh
+- `FAISS IndexFlatL2` is exact search, not suitable beyond ~100k vectors
+- No conversation history injected into the RAG context (single-turn only)
+- Static knowledge base between manual rebuilds
 
-Je n'utilise qu'un seul agenda Open Agenda comme source, celui de Deciding for Paris, avec l'identifiant 82290100. J'execute le pipeline manuellement, il n'y a pas de rafraichissement programme. J'utilise FAISS IndexFlatL2, qui fait une recherche exacte mais qui ne convient pas au dela d'environ 100 000 vecteurs. Je n'injecte pas l'historique de conversation dans le contexte du RAG, chaque question est traitee independamment. Ma base de connaissances reste statique entre deux reconstructions manuelles.
-
-Le rapport technique detaille mes recommandations pour la version de production.
+See the technical report for full production recommendations.
 
 ---
 
-## Livrables
+## Deliverables
 
-| Livrable | Emplacement |
+| Deliverable | Location |
 |---|---|
-| README, ce document | README.md |
-| Gestion des dependances | pyproject.toml, poetry.lock |
-| Scripts de pre-traitement et de vectorisation, avec docstrings | src/ingestion/, src/processing/, src/vector_store/ |
-| Tests unitaires integres au pipeline | tests/test_data_pipeline.py, executes automatiquement dans pipeline.sh |
-| Code du systeme RAG, LangChain + Mistral + FAISS | src/rag/langchain_chain.py |
-| Rapport technique | reports/ |
-| Presentation, 10 a 15 diapositives, en francais et en anglais | slides/ |
-| Demonstration en direct | bash 04_run.sh |
+| README (this file) | `README.md` |
+| Dependency management | `pyproject.toml`, `poetry.lock` |
+| Pre-processing & vectorisation scripts (with docstrings) | `src/project_11/ingestion/`, `src/project_11/processing/`, `src/project_11/vector_store/` |
+| Unit tests integrated in the pipeline | `tests/test_data_pipeline.py`, run automatically in `pipeline.sh` |
+| RAG system code (LangChain + Mistral + FAISS) | `src/project_11/rag/langchain_chain.py` |
+| Technical report | `reports/` |
+| Presentation (10–15 slides, FR + EN) | `slides/` |
+| Live demo | `bash 04_run.sh` |
